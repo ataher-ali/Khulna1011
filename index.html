@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Hind+Siliguri:wght@500;600;700&display=swap">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#102a43">
+<title>খুলনা বিভাগ | মাসিক পারফরম্যান্স ও ৬০ দিনের কর্মপরিকল্পনা</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+:root{--ink:#102a43;--muted:#627d98;--teal:#0f766e;--mint:#d9f7ee;--gold:#f3b33d;--bg:#f4f7fb}
+*{box-sizing:border-box}body{font-family:'Hind Siliguri',sans-serif;background:var(--bg);color:#243b53;scroll-behavior:smooth}
+.en{font-family:Inter,sans-serif}.hero{background:radial-gradient(circle at 85% 15%,rgba(45,212,191,.22),transparent 28%),linear-gradient(125deg,#102a43,#0f766e);position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:420px;height:420px;border:1px solid rgba(255,255,255,.13);border-radius:50%;right:-140px;bottom:-260px;box-shadow:0 0 0 35px rgba(255,255,255,.035),0 0 0 75px rgba(255,255,255,.025)}
+.glass{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(12px)}
+.panel{background:white;border:1px solid #e5edf5;border-radius:22px;box-shadow:0 8px 28px rgba(16,42,67,.045)}
+.kpi{transition:transform .25s,box-shadow .25s}.kpi:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(16,42,67,.10)}
+.tab-btn{border:1px solid #dce6ef;color:#486581;background:white;border-radius:999px;padding:9px 16px;white-space:nowrap;transition:.2s}
+.tab-btn.active{background:#102a43;color:white;border-color:#102a43;box-shadow:0 5px 14px #102a4322}
+.section{display:none;animation:fadeUp .45s ease both}.section.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.floaty{animation:floaty 4s ease-in-out infinite}
+.bar{height:8px;background:#eaf0f6;border-radius:99px;overflow:hidden}.bar>span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#0f766e,#2dd4bf);transition:width 1s ease}
+.badge{display:inline-flex;align-items:center;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:600}
+.badge-green{background:#dcfce7;color:#166534}.badge-amber{background:#fef3c7;color:#92400e}.badge-blue{background:#dbeafe;color:#1d4ed8}.badge-slate{background:#e2e8f0;color:#475569}
+#districtMap{height:540px;border-radius:18px;z-index:1}.leaflet-popup-content{font-family:'Hind Siliguri',sans-serif;min-width:180px}
+.table-wrap{overflow-x:auto}table{border-collapse:separate;border-spacing:0;width:100%;font-size:14px}th{background:#f1f6fa;color:#486581;font-weight:700;text-align:left}th,td{padding:12px 14px;border-bottom:1px solid #edf2f7;white-space:nowrap}tbody tr:hover{background:#f8fbfd}
+.timeline{position:relative}.timeline:before{content:"";position:absolute;left:17px;top:12px;bottom:12px;width:2px;background:#d9e7ef}.timeline-item{position:relative;padding-left:52px}.timeline-dot{position:absolute;left:7px;top:4px;width:22px;height:22px;border:5px solid #ccfbf1;background:#0f766e;border-radius:50%;z-index:1}
+.fade-in{opacity:0;transform:translateY(12px);transition:all .65s ease}.fade-in.visible{opacity:1;transform:translateY(0)}
+@media(max-width:700px){#districtMap{height:440px}.hero h1{font-size:2.1rem}.table-wrap table{font-size:12px}.table-wrap th,.table-wrap td{padding:9px 10px}}
+@media print{body{background:white}.no-print,header nav,.tabbar{display:none!important}.section{display:block!important;page-break-inside:avoid}.panel{box-shadow:none;break-inside:avoid}.hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}#districtMap{height:400px}.fade-in{opacity:1;transform:none}}
+
+/* Full UI refresh: minimal AI-workspace aesthetic, responsive and accessible */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+:root{--ink:#111827;--muted:#667085;--line:#e5e7eb;--paper:#ffffff;--soft:#f8fafc;--yellow:#facc15;--blue:#60a5fa;--green:#22c55e;--bg:#fff}
+html{scroll-behavior:smooth;overflow-x:clip}body{font-family:'Hind Siliguri','DM Sans',sans-serif;background:#fff;color:#171717;overflow-x:hidden;line-height:1.65}
+body:before{content:"";position:fixed;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--yellow),var(--blue),var(--green));z-index:1000}
+/* fixed ChatGPT-like workspace rail */
+#workspaceRail{position:fixed;z-index:200;left:0;top:3px;bottom:0;width:258px;max-width:100vw;overflow-x:hidden;background:#fafafa;border-right:1px solid #e5e7eb;display:flex;flex-direction:column;padding:20px 14px;gap:18px;overflow-y:auto}
+.rail-brand{display:flex;align-items:center;gap:11px;padding:3px 8px 18px;border-bottom:1px solid #e5e7eb;color:#111827}
+.rail-mark{width:36px;height:36px;border-radius:12px;background:#111827;color:#facc15;display:grid;place-items:center;font-weight:800;font-family:'DM Sans',sans-serif;box-shadow:3px 3px 0 #d1d5db}
+.rail-caption{font:700 10px 'DM Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#9ca3af;padding:0 10px;margin-bottom:5px}
+#workspaceRail nav{display:flex;flex-direction:column;gap:5px;min-width:0;width:100%;max-width:100%}
+#workspaceRail .tab-btn{display:flex;align-items:center;gap:11px;text-align:left;white-space:normal;width:100%;border:1px solid transparent;border-radius:12px;background:transparent;color:#4b5563;padding:10px 12px;font-size:14px;line-height:1.4;box-shadow:none;transition:background .2s,color .2s,transform .2s}
+#workspaceRail .tab-btn:before{content:attr(data-icon);width:20px;flex:0 0 20px;text-align:center;font-family:'DM Sans',sans-serif;font-size:15px;color:#6b7280}
+#workspaceRail .tab-btn:hover{background:#f3f4f6;color:#111827;transform:translateX(2px)}
+#workspaceRail .tab-btn.active{background:#fff;border-color:#e5e7eb;color:#111827;font-weight:700;box-shadow:0 2px 5px #11182708}
+#workspaceRail .tab-btn.active:before{color:#111827}
+.rail-foot{margin-top:auto;padding:13px 10px 2px;border-top:1px solid #e5e7eb;color:#6b7280;font-size:12px;line-height:1.6}
+body>header,body>main{margin-left:258px!important;width:calc(100% - 258px)!important;max-width:none!important}
+body>header.hero{background:#fff;color:#111827;border-bottom:1px solid #eee;overflow:hidden}
+.hero:after{width:340px;height:340px;right:-150px;bottom:-245px;border-color:#d1d5db55;box-shadow:0 0 0 35px #facc1510,0 0 0 75px #60a5fa0b}
+.hero .glass{background:#fff;border:1px solid #e5e7eb;color:#374151;backdrop-filter:none;box-shadow:0 2px 0 #f3f4f6}
+.hero .text-teal-100,.hero .text-teal-50\/90,.hero .text-teal-200{color:#4b5563!important}
+.hero .bg-teal-300\/15{background:#fef9c3!important;border-color:#fde68a!important;color:#854d0e!important}
+.hero .bg-amber-300{background:#facc15!important}.hero h1{letter-spacing:-.04em;color:#111827}.hero h1 span{color:#2563eb!important}
+.hero .text-6xl{color:#111827}.hero .uppercase{color:#6b7280!important}.hero .bg-amber-300.mx-auto{background:#22c55e!important}
+.hero button{background:#111827!important;color:#fff!important;border-radius:12px!important;box-shadow:3px 3px 0 #facc15}
+.hero .max-w-7xl{max-width:1200px!important}.hero .py-12{padding-top:42px;padding-bottom:42px}
+body>main{padding:26px clamp(18px,3vw,44px) 60px!important;margin-top:0!important;background:#fff}
+main>.grid:first-child .panel{border-radius:18px}
+.panel{background:#fff;border:1px solid #e5e7eb;border-radius:18px;box-shadow:0 2px 5px #11182705}
+.kpi{position:relative;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.kpi:after{content:"";position:absolute;left:0;top:0;width:4px;height:100%;background:var(--yellow)}
+.kpi:nth-child(2):after{background:var(--blue)}.kpi:nth-child(3):after{background:var(--green)}.kpi:nth-child(4):after{background:#111827}
+.kpi:hover{transform:translateY(-3px);box-shadow:0 10px 24px #1118270d;border-color:#d1d5db}
+.tabbar{display:none!important}
+.section{display:none;perspective:1000px}.section.active{display:block;animation:workspaceEnter .55s cubic-bezier(.2,.8,.2,1) both}
+@keyframes workspaceEnter{from{opacity:0;transform:translateY(12px) rotateX(1.5deg);filter:blur(2px)}to{opacity:1;transform:translateY(0) rotateX(0);filter:blur(0)}}
+.panel h2,.panel h3,.panel h4{color:#111827;letter-spacing:-.018em}
+.panel .text-teal-700,.panel .text-teal-800{color:#166534!important}.panel .text-amber-600{color:#a16207!important}
+.panel .bg-teal-50{background:#f0fdf4!important;border-color:#dcfce7!important}.panel .bg-teal-100{background:#dcfce7!important}.panel .border-teal-100{border-color:#bbf7d0!important}
+.panel .bg-sky-50,.panel .bg-blue-50{background:#eff6ff!important}.panel .border-sky-100,.panel .border-blue-100{border-color:#dbeafe!important}
+.panel .bg-amber-50{background:#fefce8!important}.panel .border-amber-200{border-color:#fde68a!important}
+.tab-btn{font-family:inherit}
+button,input,select,textarea{font:inherit}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #60a5fa;outline-offset:3px}
+/* sequential text entrance */
+.reveal-line{opacity:0;transform:translateY(7px);filter:blur(2px);animation:lineReveal .65s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:var(--reveal-delay,0ms)}
+@keyframes lineReveal{to{opacity:1;transform:translateY(0);filter:blur(0)}}
+.fade-in{opacity:1;transform:none}.fade-in.visible{opacity:1;transform:none}
+.bar>span{background:linear-gradient(90deg,#facc15,#60a5fa,#22c55e)}
+.badge-green{background:#dcfce7;color:#166534}.badge-blue{background:#dbeafe;color:#1d4ed8}.badge-amber{background:#fef9c3;color:#854d0e}
+#districtMap{border:1px solid #e5e7eb;border-radius:16px;overflow:hidden}
+.table-wrap{border:1px solid #e5e7eb;border-radius:14px}th{background:#f9fafb;color:#374151}tbody tr:hover{background:#fefce8}
+@media(max-width:1050px){#workspaceRail{width:220px;padding:16px 10px}body>header,body>main{margin-left:220px!important;width:calc(100% - 220px)!important}.hero .grid.lg\:grid-cols-\[1\.3fr_\.7fr\]{grid-template-columns:1fr}.hero .hidden.lg\:flex{display:none!important}}
+@media(max-width:760px){#workspaceRail{position:sticky;top:3px;bottom:auto;width:100%;height:auto;max-height:none;padding:9px 10px 8px;border-right:0;border-bottom:1px solid #e5e7eb;background:#fafafa;overflow:visible;gap:8px}body>header,body>main{margin-left:0!important;width:100%!important}.rail-brand{padding:2px 5px 8px;border-bottom:0}.rail-mark{width:30px;height:30px;border-radius:9px}.rail-brand .brand-sub{display:none}#workspaceRail .rail-caption,.rail-foot{display:none}#workspaceRail nav{flex-direction:row;overflow-x:auto;gap:6px;padding:0 0 3px;scrollbar-width:thin;min-width:0;width:100%;max-width:100%}#workspaceRail .tab-btn{flex:0 0 auto;width:auto;white-space:nowrap;padding:8px 11px;font-size:12px;border-radius:10px}#workspaceRail .tab-btn:before{width:auto;flex-basis:auto}body>main{padding:18px 12px 40px!important}.hero .max-w-7xl{padding-left:16px;padding-right:16px}.hero .py-12{padding-top:26px;padding-bottom:30px}.hero h1{font-size:clamp(2rem,7vw,3rem);line-height:1.16}.hero .text-lg{font-size:1rem}.hero .flex.flex-wrap.gap-3.mt-7>span{flex:1 1 135px}.panel{border-radius:15px}.panel.p-6,.panel.p-8{padding:17px!important}#districtMap{height:360px}.table-wrap{max-width:100%;overflow-x:auto}}
+@media(max-width:420px){#workspaceRail .tab-btn{font-size:11px;padding:7px 9px}#workspaceRail .tab-btn:before{display:none}.hero .flex.flex-wrap.gap-2.no-print{width:100%}.hero .flex.flex-wrap.gap-2.no-print span{font-size:11px;padding:7px 10px}.hero .flex.flex-wrap.gap-2.no-print button{font-size:11px;padding:7px 10px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.reveal-line{opacity:1;filter:none;transform:none}}
+@media print{#workspaceRail{display:none!important}body>header,body>main{margin-left:0!important;width:100%!important}.tabbar{display:none!important}.section{display:block!important}.reveal-line{opacity:1;animation:none}}
+
+.chip{border:1px solid #e5e7eb;background:#fff;color:#4b5563;border-radius:999px;padding:7px 14px;font-size:13px;transition:.2s}.chip:hover{background:#f3f4f6}.chip.on{background:#111827;color:#fff;border-color:#111827}
+#stageWrap{height:330px;perspective:1100px;display:grid;place-items:center;cursor:grab;touch-action:pan-y;user-select:none}#stageWrap:active{cursor:grabbing}
+#stage{position:relative;width:0;height:0;transform-style:preserve-3d}
+.floor{position:absolute;left:-190px;top:-120px;width:380px;height:240px;border:1px solid #e5e7eb;border-radius:6px;background:repeating-linear-gradient(0deg,#f1f5f9 0 1px,transparent 1px 30px),repeating-linear-gradient(90deg,#f1f5f9 0 1px,transparent 1px 30px)}
+.col{position:absolute;left:0;top:0;width:44px;height:44px;transform-style:preserve-3d;cursor:pointer}
+.col b{position:absolute;display:block;background:var(--c)}
+.col .f{left:0;width:44px;height:calc(var(--h)*1px);top:calc(44px - var(--h)*1px);transform-origin:50% 100%;transform:rotateX(-90deg)}
+.col .b{left:0;width:44px;height:calc(var(--h)*1px);top:calc(0px - var(--h)*1px);transform-origin:50% 100%;transform:rotateX(-90deg);filter:brightness(.8)}
+.col .r{top:0;width:calc(var(--h)*1px);height:44px;left:calc(44px - var(--h)*1px);transform-origin:100% 50%;transform:rotateY(90deg);filter:brightness(.88)}
+.col .l{top:0;width:calc(var(--h)*1px);height:44px;left:calc(0px - var(--h)*1px);transform-origin:100% 50%;transform:rotateY(90deg);filter:brightness(.75)}
+.col .t{left:0;top:0;width:44px;height:44px;transform:translateZ(calc(var(--h)*1px));filter:brightness(1.08)}
+.col:hover .t{filter:brightness(1.25)}.col.sel .t{outline:2px solid #111827}
+.tilt{transition:transform .25s ease}
+body:before{transform-origin:0 0;transform:scaleX(var(--p,1))}
+@media(max-width:760px){#stageWrap{height:260px}#stage{scale:.78}}
+@media print{#stageWrap{display:none}}
+
+/* 2D game theme */
+:root{--ink:#111827}
+body{background:#e9f2ff radial-gradient(#cfe0fb 1.5px,transparent 1.5px) 0 0/22px 22px!important}
+body>main{background:transparent!important}
+body>header.hero{background:#fff!important;border-bottom:3px solid var(--ink)!important}
+.px{font-family:'Press Start 2P',monospace;font-size:12px;letter-spacing:0}
+.panel{border:3px solid var(--ink)!important;border-radius:14px!important;box-shadow:4px 4px 0 var(--ink)!important;position:relative}
+#workspaceRail{background:#fff!important;border-right:3px solid var(--ink)!important}
+#workspaceRail nav{gap:9px}
+#workspaceRail .tab-btn{border:2px solid var(--ink)!important;border-radius:10px!important;background:#fff!important;box-shadow:3px 3px 0 var(--ink)!important;font-weight:700;color:var(--ink)!important}
+#workspaceRail .tab-btn:hover{background:#fef9c3!important;transform:translate(-1px,-1px)!important}
+#workspaceRail .tab-btn.active{background:#facc15!important;transform:translate(2px,2px)!important;box-shadow:1px 1px 0 var(--ink)!important}
+#workspaceRail .tab-btn.active:after{content:"◀";margin-left:auto;font-size:10px}
+.badge{border:2px solid var(--ink);border-radius:8px;color:var(--ink)!important}
+.chip{border:2px solid var(--ink)!important;box-shadow:2px 2px 0 var(--ink);color:var(--ink)!important;font-weight:600}.chip.on{background:#facc15!important}
+select,input[type=number],input.border,textarea{border:2px solid var(--ink)!important;border-radius:10px!important}
+th{background:#fef9c3!important;border-bottom:2px solid var(--ink)!important;color:var(--ink)!important}
+.table-wrap{border:2px solid var(--ink)!important}
+#makeSummary{background:#22c55e!important;color:var(--ink)!important;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);border-radius:12px!important}
+#makeSummary:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.floor{border:3px solid var(--ink)!important;background:conic-gradient(#d9f2c8 25%,#fff 0 50%,#d9f2c8 0 75%,#fff 0) 0 0/60px 60px!important}
+.col b{box-sizing:border-box;border:2px solid var(--ink)}.col.sel .t{outline:3px solid #facc15!important}
+#stageCap{font-weight:700;color:var(--ink)!important}
+#hud{position:sticky;top:10px;z-index:150;display:flex;flex-wrap:wrap;align-items:center;gap:12px;background:#fff;border:3px solid var(--ink);border-radius:14px;box-shadow:4px 4px 0 var(--ink);padding:10px 14px;margin-bottom:22px}
+.hud-who{display:flex;align-items:center;gap:10px}.hud-who small{display:block;color:#667085;font-size:12px;line-height:1.2}
+.hud-av{width:38px;height:38px;border:3px solid var(--ink);border-radius:10px;background:#facc15;display:grid;place-items:center;font-weight:800}
+.hud-xp{flex:1 1 220px;min-width:180px}.hud-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:700;margin-bottom:4px}
+.xpbar{height:16px;border:3px solid var(--ink);border-radius:99px;background:#fff;overflow:hidden}
+.xpbar i{display:block;height:100%;width:0;background:repeating-linear-gradient(45deg,#22c55e 0 8px,#4ade80 8px 16px);transition:width 1.4s steps(14)}
+.hud-chip{border:2px solid var(--ink);border-radius:10px;padding:6px 10px;background:#fef9c3;text-align:center;line-height:1.3}.hud-chip small{display:block;font-size:11px;color:#475467;margin-top:3px}
+.lvtag{position:absolute;top:-14px;right:14px;border:2px solid var(--ink);border-radius:8px;padding:2px 10px;font-size:12px;font-weight:700;background:#fff}
+.lv-done{background:#f0fdf4!important}.lv-done .lvtag{background:#4ade80}
+.lv-now .lvtag{background:#facc15;animation:blink 1.2s steps(2) infinite}
+.lv-lock{opacity:.78;filter:grayscale(.6)}.lv-lock .lvtag{background:#e5e7eb}
+@keyframes blink{50%{background:#fff}}
+@media(max-width:760px){#hud{top:56px;padding:8px 10px;gap:8px}.hud-who small{display:none}}
+@media print{#hud{display:none}}
+
+.tile{border:3px solid var(--ink);border-radius:12px;padding:10px 6px;text-align:center;box-shadow:3px 3px 0 var(--ink);cursor:pointer;transition:transform .15s,box-shadow .15s;font:inherit;color:var(--ink)}
+.tile:hover{transform:translateY(-3px);box-shadow:3px 6px 0 var(--ink)}.tile.sel{outline:4px solid #facc15;outline-offset:2px}
+.tile b{display:block;font-size:14px}.tile small{display:block;font-size:11px;opacity:.75}.tile .px{display:block;margin:4px 0;font-size:14px}
+.tile.gA,.gA{background:#86efac}.tile.gB,.gB{background:#93c5fd}.tile.gC,.gC{background:#e5e7eb}
+#board{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+#toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,140%);z-index:500;background:#fff;border:3px solid var(--ink);border-radius:14px;box-shadow:5px 5px 0 var(--ink);padding:12px 18px;min-width:230px;text-align:center;transition:transform .35s cubic-bezier(.3,1.5,.5,1)}
+#toast.show{transform:translate(-50%,0)}#toast .lvup{color:#ca8a04;font-size:11px;margin-bottom:6px;animation:blink 1s steps(2) infinite}#toast small{display:block;margin-top:4px;color:#475467}
+.stat{border:3px solid var(--ink);border-radius:12px;padding:12px;background:#fff;box-shadow:3px 3px 0 var(--ink)}.stat small{display:block;color:#475467;font-size:12px}.stat .px{display:block;font-size:15px;margin:6px 0}
+.ach{display:flex;gap:10px;align-items:center;border:2px solid var(--ink);border-radius:12px;padding:10px;background:#fff}.ach.off{opacity:.7;background:#f3f4f6}.ach .medal{width:34px;height:34px;border:3px solid var(--ink);border-radius:50%;display:grid;place-items:center;background:#facc15;font-weight:800;flex:none}.ach.off .medal{background:#d1d5db}
+@media print{#toast{display:none}}
+</style>
+</head>
+<body>
+<aside id="workspaceRail" aria-label="প্রতিবেদন নেভিগেশন"><div class="rail-brand"><div class="rail-mark">eL</div><div><div class="font-bold text-sm">eLEL · খুলনা বিভাগ</div><div class="brand-sub text-xs text-slate-500">Strategic workspace</div></div></div><div><div class="rail-caption">REPORT SECTIONS</div><nav id="workspaceNav" aria-label="প্রতিবেদন বিভাগ"></nav></div><div class="rail-foot">ডেটা → সিদ্ধান্ত → প্রবৃদ্ধি<br><span style="color:#9ca3af">৬০ দিনের কৌশলগত ড্যাশবোর্ড</span></div></aside>
+
+<header class="hero text-white">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-7 relative z-10">
+    <div class="flex flex-wrap justify-between items-center gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-2xl glass flex items-center justify-center text-2xl">◈</div>
+        <div><div class="font-bold text-lg">e-Learning &amp; Earning Ltd.</div><div class="text-teal-100 text-sm">খুলনা বিভাগীয় ব্যবস্থাপনা প্রতিবেদন</div></div>
+      </div>
+      <div class="flex flex-wrap gap-2 no-print">
+        <span class="glass rounded-full px-4 py-2 text-sm">রিপোর্ট: আগস্ট–অক্টোবর ২০২৬</span>
+      </div>
+    </div>
+    <div class="grid lg:grid-cols-[1.05fr_.95fr] gap-10 items-center py-6">
+      <div>
+        <div class="inline-flex items-center gap-2 rounded-full bg-teal-300/15 border border-teal-100/20 px-3 py-1.5 text-teal-100 text-sm mb-5"><span class="w-2 h-2 bg-amber-300 rounded-full animate-pulse"></span> বিভাগীয় পারফরম্যান্স ও প্রবৃদ্ধির রোডম্যাপ</div>
+        <div class="flex flex-wrap gap-3 mt-7 text-sm">
+          <span class="glass rounded-xl px-4 py-3">📅 <b>সময়কাল</b><br>২৯ অক্টোবর–২৭ ডিসেম্বর ২০২৬</span>
+          <span class="glass rounded-xl px-4 py-3">🗺 <b>কভারেজ</b><br>খুলনা বিভাগের ১০ জেলা</span>
+          <span class="glass rounded-xl px-4 py-3">🎯 <b>প্রস্তাবিত লক্ষ্য</b><br>১৫০ পেইড ভর্তি</span>
+        </div>
+      </div>
+      <div class="no-print"><div id="stageWrap" role="img" aria-label="জেলাভিত্তিক ভর্তির ৩ডি চার্ট"><div id="stage"><div class="floor"></div></div></div><div id="stageCap" class="text-center text-sm text-slate-500 mt-2"></div></div>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 lg:px-8 -mt-6 relative z-20 pb-16">
+  <div id="hud" class="no-print"><div class="hud-who"><div class="hud-av">eL</div><div><b>বিভাগীয় প্রধান</b><small>খুলনা বিভাগ</small></div></div><div class="hud-xp"><div class="hud-row"><span>ভর্তি XP</span><span id="hxT" class="px">0/150</span></div><div class="xpbar"><i id="hxB"></i></div></div><div class="hud-chip"><span class="px" id="hCoin">৳0</span><small>আয়</small></div><div class="hud-chip"><span class="px" id="hDay">0/60</span><small>দিন</small></div><div class="hud-chip"><span class="px" id="hStar">0/10</span><small>A গ্রেড জেলা</small></div></div>
+
+  <section class="grid grid-cols-2 xl:grid-cols-4 gap-4 mb-7">
+    <article class="panel kpi p-5 fade-in"><div class="text-sm text-slate-500">মোট ভর্তি · জেলা-সারি অনুযায়ী</div><div class="text-3xl font-bold text-slate-900 mt-2"><span class="counter" data-target="115">0</span><span class="text-base font-medium ml-1">জন</span></div><div class="mt-3 text-xs text-teal-700 font-semibold">আগস্ট–অক্টোবর</div></article>
+    <article class="panel kpi p-5 fade-in"><div class="text-sm text-slate-500">মোট রিপোর্টকৃত আয় · জেলা-সারি</div><div class="text-3xl font-bold text-slate-900 mt-2">৳<span class="counter" data-target="306320">0</span></div><div class="mt-3 text-xs text-slate-500">৩ মাসের যোগফল</div></article>
+    <article class="panel kpi p-5 fade-in"><div class="text-sm text-slate-500">অক্টোবর ভর্তি · জেলা-সারি</div><div class="text-3xl font-bold text-teal-700 mt-2"><span class="counter" data-target="68">0</span><span class="text-base font-medium ml-1">জন</span></div><div class="mt-3 text-xs text-teal-700 font-semibold">১–২৮ অক্টোবর</div></article>
+    <article class="panel kpi p-5 fade-in"><div class="text-sm text-slate-500">৬০ দিনের ভর্তি লক্ষ্য</div><div class="text-3xl font-bold text-amber-600 mt-2"><span class="counter" data-target="150">0</span><span class="text-base font-medium ml-1">জন</span></div><div class="mt-3 text-xs text-slate-500">প্রস্তাবিত পরিকল্পনা লক্ষ্য</div></article>
+  </section>
+
+  <div class="panel p-3 md:p-4 mb-7 tabbar no-print">
+    <nav class="flex gap-2 overflow-x-auto" aria-label="প্রতিবেদন বিভাগ">
+      <button class="tab-btn active" data-tab="overview">এক নজরে</button>
+      <button class="tab-btn" data-tab="map">জেলা ম্যাপ</button>
+      <button class="tab-btn" data-tab="performance">পারফরম্যান্স</button>
+      <button class="tab-btn" data-tab="institutions">শিক্ষা প্রতিষ্ঠান</button>
+      <button class="tab-btn" data-tab="strategy">মার্কেটিং পরিকল্পনা</button>
+      <button class="tab-btn" data-tab="research">গবেষণা ভিত্তি</button>
+      <button class="tab-btn" data-tab="plan">৬০ দিনের পরিকল্পনা</button>
+      <button class="tab-btn" data-tab="kpi">KPI ও দায়িত্ব</button>
+    </nav>
+  </div>
+
+  <section id="overview" class="section active">
+    <div class="grid lg:grid-cols-[1.15fr_.85fr] gap-6">
+      <article class="panel p-6 md:p-8 fade-in">
+        <div class="flex items-center justify-between gap-3"><div><div class="text-sm font-bold text-teal-700">EXECUTIVE SUMMARY</div><h2 class="text-2xl font-bold mt-1 text-slate-900">বিভাগের বর্তমান অবস্থান</h2></div><span class="badge badge-blue">৩ মাসের রিপোর্ট</span></div>
+        <p class="mt-4 text-slate-600 leading-8">আগস্ট থেকে অক্টোবরের জেলা-ভিত্তিক সারি অনুযায়ী মোট <b>১১৫ জন ভর্তি</b> এবং <b>৳৩,০৬,৩২০ রিপোর্টকৃত আয়</b> হয়েছে।</p>
+        <div class="grid sm:grid-cols-2 gap-4 mt-6">
+          <div class="rounded-2xl bg-teal-50 p-5 border border-teal-100"><div class="text-teal-800 font-bold">যেখানে গতি দেখা যাচ্ছে</div><p class="text-sm text-slate-600 mt-2 leading-6">বাগেরহাটে অক্টোবরের ভর্তি ১৮; কুষ্টিয়ায় ১৩; মাগুরায় ১১। চুয়াডাঙ্গা তিন মাসের রিপোর্টকৃত আয়ে এগিয়ে।</p></div>
+          <div class="rounded-2xl bg-amber-50 p-5 border border-amber-100"><div class="text-amber-800 font-bold">যেখানে মনোযোগ দরকার</div><p class="text-sm text-slate-600 mt-2 leading-6">খুলনায় ৩ মাসে ৩ ভর্তি; যশোর, নড়াইল ও মেহেরপুরে রিপোর্টে ভর্তি নেই। প্রথমে বাজার ও লিডের অবস্থা যাচাই করতে হবে।</p></div>
+        </div>
+      </article>
+      <article class="panel p-6 md:p-8 fade-in">
+        <div class="text-sm font-bold text-teal-700">MONTHLY TREND</div><h2 class="text-2xl font-bold mt-1 text-slate-900">মাসভিত্তিক ভর্তি</h2>
+        <p class="text-sm text-slate-500 mt-2">জেলা-ভিত্তিক সারির যোগফল অনুসারে; অক্টোবর ১–২৮ তারিখ।</p>
+        <div class="mt-5 h-64"><canvas id="monthlyEnrollChart" aria-label="মাসভিত্তিক ভর্তি চার্ট"></canvas></div>
+        <div class="mt-3 text-xs text-slate-500">অক্টোবর পূর্ণ মাস নয়; তাই মাসগুলোর সময়কাল এক নয়।</div>
+      </article>
+    </div>
+    <div class="grid md:grid-cols-3 gap-4 mt-6">
+      <article class="panel p-5 fade-in"><div class="text-sm text-slate-500">সর্বোচ্চ রিপোর্টকৃত আয়</div><div class="text-xl font-bold mt-2">চুয়াডাঙ্গা</div><div class="text-teal-700 font-bold text-2xl mt-1">৳১,২৮,৯২০</div><p class="text-sm text-slate-500 mt-2">তিন মাসের জেলা-সারি যোগফল</p></article>
+      <article class="panel p-5 fade-in"><div class="text-sm text-slate-500">অক্টোবরের সর্বোচ্চ ভর্তি</div><div class="text-xl font-bold mt-2">বাগেরহাট</div><div class="text-teal-700 font-bold text-2xl mt-1">১৮ জন</div><p class="text-sm text-slate-500 mt-2">লিড সোর্স ও কার্যকর কৌশল শনাক্ত করুন</p></article>
+      <article class="panel p-5 fade-in"><div class="text-sm text-slate-500">৬০ দিনের প্রস্তাবিত আয় লক্ষ্য</div><div class="text-xl font-bold mt-2">বিভাগীয় লক্ষ্য</div><div class="text-amber-600 font-bold text-2xl mt-1">৳৩,৬০,০০০</div><p class="text-sm text-slate-500 mt-2">পরিকল্পনা অনুমান; অনুমোদনের আগে যাচাই করুন</p></article>
+    </div>
+    <div id="insights" class="mt-6"></div>
+  </section>
+
+  <section id="map" class="section">
+    <div class="panel p-5 md:p-6 mb-6"><div class="grid md:grid-cols-[minmax(0,420px)_1fr] gap-6 items-start"><div><h2 class="text-xl font-bold mb-3">জেলা বোর্ড</h2><div id="board"></div></div><div><h3 class="font-bold">গ্রেড নিয়ম (আগস্ট–অক্টোবরের ভর্তি)</h3><div class="grid sm:grid-cols-3 gap-3 mt-3 text-sm"><div class="rounded-xl p-3 gA"><b>A</b> · ১৮+ ভর্তি</div><div class="rounded-xl p-3 gB"><b>B</b> · ১১–১৭ ভর্তি</div><div class="rounded-xl p-3 gC"><b>C</b> · ১০ বা কম</div></div><p class="text-sm text-slate-600 mt-4 leading-7">টাইলের সংখ্যা মোট ভর্তি, ছোট লেখা ৬০ দিনের লক্ষ্য। টাইলে ক্লিক করলে নিচের ম্যাপ ও তথ্য প্যানেলে সেই জেলা দেখাবে। বোর্ডের অবস্থান জেলাগুলোর আনুমানিক ভৌগোলিক বিন্যাস।</p></div></div></div>
+    <div class="grid xl:grid-cols-[1.4fr_.6fr] gap-6">
+      <article class="panel p-4 md:p-6">
+        <div class="flex flex-wrap justify-between items-start gap-3 mb-4"><div><div class="text-sm font-bold text-teal-700">GEO PERFORMANCE VIEW</div><h2 class="text-2xl font-bold text-slate-900 mt-1">জেলা-ভিত্তিক ইন্টারঅ্যাকটিভ ম্যাপ</h2><p class="text-sm text-slate-500 mt-1">জেলার সীমানা বা মার্কারে ক্লিক করে ভর্তি, আয় ও লক্ষ্য দেখুন।</p></div><div class="flex flex-wrap gap-2 text-xs"><span class="badge badge-green">উচ্চ অগ্রাধিকার</span><span class="badge badge-amber">পরীক্ষা/উন্নয়ন</span><span class="badge badge-slate">চাহিদা যাচাই</span></div></div>
+        <div id="districtMap"></div>
+        <p id="mapStatus" class="text-xs text-slate-500 mt-3">মানচিত্র লোড হচ্ছে…</p>
+      </article>
+      <aside class="panel p-6">
+        <div class="text-sm font-bold text-teal-700">SELECTED DISTRICT</div><h3 id="selectedDistrict" class="text-2xl font-bold text-slate-900 mt-1">একটি জেলা নির্বাচন করুন</h3>
+        <p id="selectedDistrictNote" class="text-sm text-slate-500 mt-2">ম্যাপে জেলার উপর ক্লিক করুন অথবা নিচের তালিকা থেকে বেছে নিন।</p>
+        <div class="grid grid-cols-2 gap-3 mt-5">
+          <div class="rounded-xl bg-slate-50 p-4"><div class="text-xs text-slate-500">৩ মাসে ভর্তি</div><div id="dEnroll" class="text-2xl font-bold mt-1">—</div></div>
+          <div class="rounded-xl bg-slate-50 p-4"><div class="text-xs text-slate-500">৩ মাসে আয়</div><div id="dRevenue" class="text-xl font-bold mt-1">—</div></div>
+          <div class="rounded-xl bg-slate-50 p-4"><div class="text-xs text-slate-500">অক্টোবর ভর্তি</div><div id="dOct" class="text-2xl font-bold mt-1">—</div></div>
+          <div class="rounded-xl bg-slate-50 p-4"><div class="text-xs text-slate-500">৬০ দিনের লক্ষ্য</div><div id="dTarget" class="text-2xl font-bold text-teal-700 mt-1">—</div></div>
+        </div>
+        <div class="mt-5"><div class="flex justify-between text-sm mb-2 font-semibold"><span>৩ মাসের ভর্তি ÷ ৬০ দিনের লক্ষ্য</span><span id="dProgressLabel"></span></div><div class="bar"><span id="dProgress" style="width:0%"></span></div></div>
+        <label class="block text-sm font-semibold mt-6 mb-2" for="districtSelect">জেলা নির্বাচন</label><select id="districtSelect" class="w-full border border-slate-200 rounded-xl px-3 py-3 bg-white outline-none focus:ring-2 focus:ring-teal-500"></select>
+        <div class="mt-5 p-4 rounded-xl bg-teal-50 text-sm leading-6 text-teal-900"><b>ব্যবস্থাপনা নির্দেশনা</b><br><span id="dAction">জেলা নির্বাচন করলে অগ্রাধিকারভিত্তিক করণীয় দেখানো হবে।</span></div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="performance" class="section">
+    <div class="grid lg:grid-cols-2 gap-6">
+      <article class="panel p-6"><div class="text-sm font-bold text-teal-700">DISTRICT COMPARISON</div><h2 class="text-2xl font-bold mt-1">জেলা অনুযায়ী ভর্তি</h2><p class="text-sm text-slate-500 mt-2">আগস্ট–অক্টোবর জেলা-সারি যোগফল।</p><div class="h-[390px] mt-5"><canvas id="districtEnrollChart"></canvas></div></article>
+      <article class="panel p-6"><div class="text-sm font-bold text-teal-700">REVENUE CONTRIBUTION</div><h2 class="text-2xl font-bold mt-1">জেলা অনুযায়ী রিপোর্টকৃত আয়</h2><p class="text-sm text-slate-500 mt-2">টাকা; মোট সারির অমিলের কারণে জেলা-সারি যোগফল ব্যবহৃত।</p><div class="h-[390px] mt-5"><canvas id="districtRevenueChart"></canvas></div></article>
+    </div>
+    <article class="panel p-6 mt-6"><div class="flex flex-wrap items-end justify-between gap-3"><div><div class="text-sm font-bold text-teal-700">DISTRICT SCORECARD</div><h2 class="text-2xl font-bold mt-1">সম্পূর্ণ জেলা-ভিত্তিক ডেটা</h2></div><input id="districtSearch" class="border border-slate-200 rounded-xl px-4 py-2.5" placeholder="জেলা খুঁজুন…" /></div>
+      <div class="table-wrap mt-5"><table id="districtTable"><thead><tr><th>জেলা</th><th>আগস্ট ভর্তি</th><th>সেপ্টেম্বর ভর্তি</th><th>অক্টোবর ভর্তি</th><th>মোট ভর্তি</th><th>মোট রিপোর্টকৃত আয়</th><th>৬০ দিনের লক্ষ্য</th><th>আয়/ভর্তি</th><th>ভর্তি অংশ</th></tr></thead><tbody></tbody></table></div>
+    </article>
+  </section>
+
+<section id="institutions" class="section">
+<div class="panel p-6 md:p-8">
+<div class="text-sm font-bold text-teal-700">INSTITUTION DIRECTORY</div><h2 class="text-2xl md:text-3xl font-bold mt-1">শিক্ষা প্রতিষ্ঠান ডিরেক্টরি</h2><p class="text-sm text-slate-500 mt-2">জেলা → উপজেলা → প্রতিষ্ঠানের ধরন বেছে নিন।</p>
+<div class="grid sm:grid-cols-3 gap-3 mt-5"><select id="insDist" class="border border-slate-200 rounded-xl px-3 py-3 bg-white" aria-label="জেলা"><option value="">সব জেলা</option></select><select id="insUp" class="border border-slate-200 rounded-xl px-3 py-3 bg-white" aria-label="উপজেলা" disabled><option value="">সব উপজেলা</option></select><input id="insQ" class="border border-slate-200 rounded-xl px-3 py-3" placeholder="নাম খুঁজুন…" aria-label="নাম খুঁজুন"></div>
+<div id="insChips" class="flex flex-wrap gap-2 mt-4"></div>
+<div id="insOut" class="mt-5"></div>
+<p class="text-xs text-slate-500 mt-6">উৎস: কলেজ — মাউশি সরকারি কলেজ তালিকা (২০২২-এ হালনাগাদ); টেকনিক্যাল স্কুল ও কলেজ — বাংলা উইকিপিডিয়া; পলিটেকনিক — BTEB ও প্রতিষ্ঠানের সাইট; জেলার সংখ্যা — BANBEIS IEIMS-ভিত্তিক (১৭ অক্টোবর ২০২৬)। তালিকা সম্পূর্ণ নয়; পূর্ণ তালিকা <a class="underline" href="https://institute-search.ieims.banbeis.gov.bd/" target="_blank" rel="noopener">BANBEIS Institute Search ↗</a>।</p>
+</div>
+</section>
+
+<section id="strategy" class="section">
+<div class="panel p-6 md:p-8 mb-6"><div class="text-sm font-bold text-teal-700">MARKETING PLAN</div><h2 class="text-2xl md:text-3xl font-bold mt-1">মার্কেটিং পরিকল্পনা</h2><p class="text-slate-500 mt-2">জেলাগুলোকে গ্রেডে ভাগ করে আলাদা কৌশল। গ্রেড আগস্ট–অক্টোবরের ভর্তির ভিত্তিতে প্রাথমিক; আয়-ব্যয় মিলিয়ে চূড়ান্ত করুন।</p></div>
+<div class="grid md:grid-cols-2 xl:grid-cols-4 gap-5">
+<article class="panel p-6"><span class="badge badge-green">গ্রেড A · স্কেল</span><h3 class="text-lg font-bold mt-3">চুয়াডাঙ্গা, কুষ্টিয়া, মাগুরা, বাগেরহাট</h3><p class="text-sm mt-2"><b>লক্ষ্য:</b> যা কাজ করছে তা বাড়ানো</p><ul class="list-disc pl-5 mt-3 text-sm text-slate-600 leading-7"><li>সফল কোর্স ও লিড উৎস শনাক্ত করে ফেসবুক বাজেট ধাপে ধাপে বাড়ানো</li><li>কলেজ ও পলিটেকনিকে সেমিনার</li><li>বর্তমান শিক্ষার্থীর সাফল্যের গল্প ও রেফারেল</li><li>ব্যাচের আসন-সক্ষমতা আগে নিশ্চিত</li></ul><div class="mt-4 text-xs text-slate-500"><b>মাপার সূচক:</b> প্রতি ভর্তি খরচ, লিড→ভর্তি</div></article><article class="panel p-6"><span class="badge badge-blue">গ্রেড B · কনভার্সন</span><h3 class="text-lg font-bold mt-3">ঝিনাইদহ, সাতক্ষীরা</h3><p class="text-sm mt-2"><b>লক্ষ্য:</b> লিডকে ভর্তিতে রূপান্তর</p><ul class="list-disc pl-5 mt-3 text-sm text-slate-600 leading-7"><li>২ ঘণ্টার মধ্যে ফোন; ৩ ধাপের ফলোআপ</li><li>স্কুল-কলেজে ডেমো ক্লাস</li><li>সম্মতিভিত্তিক SMS রিমাইন্ডার</li><li>চলমান পলিটেকনিক অ্যাটাচমেন্ট থেকে লিড সংগ্রহ</li></ul><div class="mt-4 text-xs text-slate-500"><b>মাপার সূচক:</b> লিড→ভর্তি হার, ফলোআপ সময়</div></article><article class="panel p-6"><span class="badge badge-amber">গ্রেড C · পাইলট</span><h3 class="text-lg font-bold mt-3">খুলনা, যশোর, নড়াইল, মেহেরপুর</h3><p class="text-sm mt-2"><b>লক্ষ্য:</b> কম খরচে চাহিদা যাচাই</p><ul class="list-disc pl-5 mt-3 text-sm text-slate-600 leading-7"><li>একটি কোর্স নিয়ে ছোট ফেসবুক লিড টেস্ট</li><li>ফ্রি ডেমো ও অনলাইন ওয়েবিনার</li><li>প্রতিষ্ঠান তালিকা ও প্রথম মিটিং</li><li>খুলনা ও যশোরের অ্যাটাচমেন্ট শিক্ষার্থীদের ভর্তিতে আনা</li><li>৩০ দিনে ফল না এলে বাজেট থামানো</li></ul><div class="mt-4 text-xs text-slate-500"><b>মাপার সূচক:</b> প্রতি লিড খরচ, ডেমো উপস্থিতি</div></article><article class="panel p-6"><span class="badge badge-slate">গ্রেড D · সব জেলা</span><h3 class="text-lg font-bold mt-3">বিভাগজুড়ে</h3><p class="text-sm mt-2"><b>লক্ষ্য:</b> কাঠামো ও অনলাইন আয়</p><ul class="list-disc pl-5 mt-3 text-sm text-slate-600 leading-7"><li>ফেসবুক কনটেন্ট ক্যালেন্ডার ও একক লিড শিট</li><li>অনলাইন কোর্স: USA Home Services Lead Collection; নতুন Stock Contributor &amp; Passive Income (২ মাস, ২৪ ক্লাস)</li><li>শীতকালীন শিশুদের বেসিক কম্পিউটার কোর্সের চাহিদা যাচাই</li></ul><div class="mt-4 text-xs text-slate-500"><b>মাপার সূচক:</b> লিড ডেটা পূর্ণতা, অনলাইন ভর্তি</div></article>
+</div>
+<div class="panel p-6 mt-6"><h3 class="text-xl font-bold">কোর্স অনুযায়ী লক্ষ্য শ্রোতা</h3><div class="grid md:grid-cols-3 gap-4 mt-4">
+<div class="rounded-xl bg-slate-50 p-4"><b>অফলাইন কোর্স</b><p class="text-sm text-slate-600 mt-1">ডিজিটাল মার্কেটিং, গ্রাফিক ডিজাইন, কম্পিউটার অফিস অ্যাপ্লিকেশন · কলেজ/পলিটেকনিকের শিক্ষার্থী ও চাকরিপ্রার্থী</p></div>
+<div class="rounded-xl bg-slate-50 p-4"><b>অনলাইন কোর্স</b><p class="text-sm text-slate-600 mt-1">আয়মুখী দক্ষতা খুঁজছেন এমন তরুণ ও ফ্রিল্যান্স-আগ্রহী</p></div>
+<div class="rounded-xl bg-slate-50 p-4"><b>শিশু-কিশোর কোর্স</b><p class="text-sm text-slate-600 mt-1">অভিভাবক ও স্কুল · শীতকালীন ছুটিতে বেসিক কম্পিউটার</p></div>
+</div></div>
+</section>
+
+<section id="plan" class="section">
+<div class="panel p-6 md:p-8 mb-6"><div class="text-sm font-bold text-teal-700">60-DAY PLAN</div><h2 class="text-2xl md:text-3xl font-bold mt-1">৬০ দিনের কর্মপরিকল্পনা</h2><p class="text-slate-500 mt-2">২৯ অক্টোবর–২৭ ডিসেম্বর ২০২৬ · চারটি ধাপ</p>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-5"><div class="rounded-xl bg-slate-50 p-4"><div class="text-xs text-slate-500">পেইড ভর্তি</div><div class="text-2xl font-bold">১৫০</div></div><div class="rounded-xl bg-slate-50 p-4"><div class="text-xs text-slate-500">আয় লক্ষ্য</div><div class="text-2xl font-bold">৳৩,৬০,০০০</div></div><div class="rounded-xl bg-slate-50 p-4"><div class="text-xs text-slate-500">প্রতিষ্ঠান মিটিং</div><div class="text-2xl font-bold">৩০+</div></div><div class="rounded-xl bg-slate-50 p-4"><div class="text-xs text-slate-500">সেমিনার/ডেমো</div><div class="text-2xl font-bold">১০+</div></div></div></div>
+<div class="grid md:grid-cols-2 xl:grid-cols-4 gap-5">
+<article class="panel p-5 border-t-4 border-blue-400"><div class="text-xs text-slate-500">ধাপ ১ · দিন ১–১৫ · ২৯ অক্টো–১২ নভে</div><h3 class="text-lg font-bold mt-1">ভিত্তি তৈরি</h3><ul class="list-disc pl-5 mt-3 text-sm text-slate-600 leading-7"><li>জেলাভিত্তিক লিড, ভর্তি, আয়, আদায়, বিজ্ঞাপন ব্যয়ের বেসলাইন; অক্টোবরের ১ জনের অমিল মেটানো</li><li>জেলার গ্রেড (A/B/C) ও লক্ষ্য চূড়ান্ত; দায়িত্বপ্রাপ্ত ব্যক্তি ঠিক</li><li>লিড শিট/CRM চালু; ক্রিয়েটিভ, FAQ ও কল স্ক্রিপ্ট প্রস্তুত</li><li>উপজেলা-ভিত্তিক প্রতিষ্ঠান তালিকা তৈরি</li></ul><div class="mt-4 rounded-xl bg-slate-50 p-3 text-sm"><b>ফল:</b> বেসলাইন, লক্ষ্যপত্র, লিড ট্র্যাকার</div></article><article class="panel p-5 border-t-4 border-teal-500"><div class="text-xs text-slate-500">ধাপ ২ · দিন ১৬–৩০ · ১৩–২৭ নভে</div><h3 class="text-lg font-bold mt-1">প্রচার ও লিড</h3><ul class="list-disc pl-5 mt-3 text-sm text-slate-600 leading-7"><li>গ্রেড অনুযায়ী ফেসবুক ক্যাম্পেইন ও সম্মতিভিত্তিক SMS চালু; প্রতিটি লিডের উৎস ট্যাগ</li><li>নতুন লিডে ২ ঘণ্টার মধ্যে যোগাযোগ; নির্ধারিত ফলোআপ</li><li>কলেজ, পলিটেকনিক ও NGO-তে মিটিং শুরু (লক্ষ্য ১৫টি)</li><li>দিন ৩০-এ মধ্যবর্তী পর্যালোচনা</li></ul><div class="mt-4 rounded-xl bg-slate-50 p-3 text-sm"><b>ফল:</b> ৩০ দিনের রিপোর্ট ও সংশোধনী</div></article><article class="panel p-5 border-t-4 border-amber-400"><div class="text-xs text-slate-500">ধাপ ৩ · দিন ৩১–৪৬ · ২৮ নভে–১৩ ডিসে</div><h3 class="text-lg font-bold mt-1">স্কেল ও পরীক্ষা</h3><ul class="list-disc pl-5 mt-3 text-sm text-slate-600 leading-7"><li>যে চ্যানেলে প্রতি ভর্তি খরচ কম, সেখানে বাজেট বাড়ানো; অকার্যকর প্রচার বন্ধ</li><li>সেমিনার, ডেমো ও ওয়েবিনার (লক্ষ্য ১০টি)</li><li>অনলাইন কোর্স প্রচার; শীতকালীন কিডস কোর্সের চাহিদা যাচাই</li><li>পলিটেকনিক ইন্ডাস্ট্রিয়াল অ্যাটাচমেন্ট বাড়ানোর আলোচনা</li></ul><div class="mt-4 rounded-xl bg-slate-50 p-3 text-sm"><b>ফল:</b> কার্যকর চ্যানেল ও নতুন বাজারের ফল</div></article><article class="panel p-5 border-t-4 border-green-500"><div class="text-xs text-slate-500">ধাপ ৪ · দিন ৪৭–৬০ · ১৪–২৭ ডিসে</div><h3 class="text-lg font-bold mt-1">ভর্তি, আদায় ও মূল্যায়ন</h3><ul class="list-disc pl-5 mt-3 text-sm text-slate-600 leading-7"><li>আগ্রহী লিডের ভর্তি ফলোআপ; বকেয়া আদায়</li><li>জেলাভিত্তিক লক্ষ্য বনাম বাস্তব সাপ্তাহিক পর্যালোচনা</li><li>কম পারফর্মিং জেলায় সংশোধনী পদক্ষেপ, মালিক ও সময়সীমা</li><li>২৪–২৭ ডিসেম্বর: চূড়ান্ত মূল্যায়ন ও পরবর্তী ৯০ দিনের পরিকল্পনা</li></ul><div class="mt-4 rounded-xl bg-slate-50 p-3 text-sm"><b>ফল:</b> সমাপনী প্রতিবেদন ও ৯০ দিনের পরিকল্পনা</div></article>
+</div>
+<article class="panel p-6 mt-6"><h3 class="text-xl font-bold">ব্যবস্থাপনা রুটিন</h3><div class="grid md:grid-cols-3 gap-4 mt-4"><div class="rounded-xl bg-slate-50 p-4"><b>প্রতিদিন</b><p class="text-sm text-slate-600 mt-1">নতুন লিড, ফলোআপ, ভর্তি ও পেমেন্ট আপডেট</p></div><div class="rounded-xl bg-slate-50 p-4"><b>প্রতি সপ্তাহে</b><p class="text-sm text-slate-600 mt-1">জেলাভিত্তিক KPI, ব্যয়, লিড মান, ভর্তি ও আদায়</p></div><div class="rounded-xl bg-slate-50 p-4"><b>প্রতি ৩০ দিনে</b><p class="text-sm text-slate-600 mt-1">লক্ষ্য সংশোধন, বাজেট পুনর্বণ্টন, কৌশল পর্যালোচনা</p></div></div></article>
+</section>
+
+  <section id="kpi" class="section">
+    <div class="panel p-6 md:p-8 mb-6"><div class="text-sm font-bold text-teal-700">MEASUREMENT & ACCOUNTABILITY</div><h2 class="text-2xl md:text-3xl font-bold mt-1">KPI, দায়িত্ব ও সাপ্তাহিক নিয়ন্ত্রণ</h2><p class="text-slate-500 mt-2">লক্ষ্যগুলো প্রস্তাবিত। বেসলাইন ও ব্যবস্থাপনার অনুমোদন অনুযায়ী চূড়ান্ত করতে হবে।</p></div>
+    <div class="grid lg:grid-cols-2 gap-6">
+      <article class="panel p-6"><h3 class="text-xl font-bold">প্রধান KPI</h3><div class="table-wrap mt-4"><table><thead><tr><th>KPI</th><th>সংজ্ঞা / মানদণ্ড</th></tr></thead><tbody>
+      <tr><td>পেইড ভর্তি</td><td><b>১৫০ জন</b> · ৬০ দিনের প্রস্তাবিত লক্ষ্য</td></tr>
+      <tr><td>রিপোর্টকৃত আয়</td><td><b>৳৩,৬০,০০০</b> · পরিকল্পনা অনুমান</td></tr>
+      <tr><td>লিড প্রথম যোগাযোগ</td><td>কমপক্ষে ৯০% নতুন লিডে ২ ঘণ্টার মধ্যে যোগাযোগের চেষ্টা</td></tr>
+      <tr><td>Lead-to-enrollment</td><td>প্রথম ১৪ দিনে বেসলাইন; এরপর উন্নতির লক্ষ্য</td></tr>
+      <tr><td>প্রতিষ্ঠান মিটিং</td><td>কমপক্ষে ৩০টি প্রস্তাবিত মিটিং</td></tr>
+      <tr><td>সেমিনার/ডেমো/ওয়েবিনার</td><td>কমপক্ষে ১০টি প্রস্তাবিত কার্যক্রম</td></tr>
+      <tr><td>লিড ডেটা পূর্ণতা</td><td>কমপক্ষে ৯৫% রেকর্ডে প্রয়োজনীয় তথ্য</td></tr>
+      <tr><td>আয় ও বকেয়া</td><td>সাপ্তাহিক ১০০% আপডেট ও ফাইন্যান্সের সঙ্গে মিল</td></tr>
+      </tbody></table></div></article>
+      <article class="panel p-6"><h3 class="text-xl font-bold">দায়িত্ব বণ্টন</h3><div class="space-y-3 mt-4">
+        <div class="rounded-xl bg-slate-50 p-4"><div class="font-bold">বিভাগীয় প্রধান</div><p class="text-sm text-slate-600 mt-1">লক্ষ্য অনুমোদন, সাপ্তাহিক পর্যালোচনা, বাধা দূর করা, বাজেট ও সম্পদ বণ্টন।</p></div>
+        <div class="rounded-xl bg-slate-50 p-4"><div class="font-bold">জেলা / সেন্টার টিম</div><p class="text-sm text-slate-600 mt-1">লিড ফলোআপ, প্রতিষ্ঠান যোগাযোগ, সেমিনার, ভর্তি ও ব্যাচ-সক্ষমতার আপডেট।</p></div>
+        <div class="rounded-xl bg-slate-50 p-4"><div class="font-bold">মার্কেটিং টিম</div><p class="text-sm text-slate-600 mt-1">ক্রিয়েটিভ, ক্যাম্পেইন সেটআপ, জেলা ও কোর্স অনুযায়ী সোর্স ট্র্যাকিং, CPL রিপোর্ট।</p></div>
+        <div class="rounded-xl bg-slate-50 p-4"><div class="font-bold">টেলিসেলস / ভর্তি টিম</div><p class="text-sm text-slate-600 mt-1">নতুন লিডে দ্রুত যোগাযোগ, নির্ধারিত ফলোআপ, আপত্তি/প্রশ্ন নথিভুক্ত ও ভর্তি সম্পন্ন।</p></div>
+        <div class="rounded-xl bg-slate-50 p-4"><div class="font-bold">ফাইন্যান্স</div><p class="text-sm text-slate-600 mt-1">রিপোর্টকৃত আয়, প্রকৃত আদায়, কিস্তি ও বকেয়া আলাদা করে মিলিয়ে দেখা।</p></div>
+      </div></article>
+    </div>
+    <article class="panel p-6 mt-6"><h3 class="text-xl font-bold">সাপ্তাহিক রিপোর্টিং ফর্ম</h3><p class="text-sm text-slate-500 mt-1">নিচের ঘরগুলোতে বাস্তব ফল লিখে সাপ্তাহিক সারাংশ তৈরি করুন। এই ফর্ম ব্রাউজারে স্থায়ীভাবে সংরক্ষিত হয় না।</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
+        <label class="text-sm font-semibold">সপ্তাহ<select id="weekField" class="mt-2 w-full border rounded-xl p-3 bg-white"><option>সপ্তাহ ১</option><option>সপ্তাহ ২</option><option>সপ্তাহ ৩</option><option>সপ্তাহ ৪</option><option>সপ্তাহ ৫</option><option>সপ্তাহ ৬</option><option>সপ্তাহ ৭</option><option>সপ্তাহ ৮</option><option>সপ্তাহ ৯</option></select></label>
+        <label class="text-sm font-semibold">নতুন লিড<input id="fLeads" type="number" min="0" class="mt-2 w-full border rounded-xl p-3" placeholder="সংখ্যা"></label>
+        <label class="text-sm font-semibold">পেইড ভর্তি<input id="fEnroll" type="number" min="0" class="mt-2 w-full border rounded-xl p-3" placeholder="সংখ্যা"></label>
+        <label class="text-sm font-semibold">রিপোর্টকৃত আয় (৳)<input id="fRevenue" type="number" min="0" class="mt-2 w-full border rounded-xl p-3" placeholder="টাকা"></label>
+        <label class="text-sm font-semibold">বিজ্ঞাপন ব্যয় (৳)<input id="fSpend" type="number" min="0" class="mt-2 w-full border rounded-xl p-3" placeholder="টাকা"></label>
+        <label class="text-sm font-semibold">প্রতিষ্ঠান মিটিং<input id="fMeet" type="number" min="0" class="mt-2 w-full border rounded-xl p-3" placeholder="সংখ্যা"></label>
+        <label class="text-sm font-semibold">সেমিনার/ডেমো<input id="fEvents" type="number" min="0" class="mt-2 w-full border rounded-xl p-3" placeholder="সংখ্যা"></label>
+        <label class="text-sm font-semibold">বকেয়া (৳)<input id="fDue" type="number" min="0" class="mt-2 w-full border rounded-xl p-3" placeholder="টাকা"></label>
+      </div>
+      <label class="block text-sm font-semibold mt-4">সিদ্ধান্ত / বাধা / পরবর্তী পদক্ষেপ<textarea id="fNotes" class="mt-2 w-full border rounded-xl p-3" rows="3" placeholder="সংক্ষিপ্ত মন্তব্য"></textarea></label>
+      <div class="flex flex-wrap gap-3 mt-4 no-print"><button id="makeSummary" class="bg-teal-700 text-white rounded-xl px-5 py-3 font-semibold hover:bg-teal-800">সাপ্তাহিক সারাংশ তৈরি</button></div><div id="weeklySummary" class="hidden rounded-xl bg-teal-50 border border-teal-100 p-5 mt-4 leading-7"></div>
+    </article>
+  </section>
+
+
+
+<section id="research" class="section">
+<div class="panel p-6 md:p-8 mb-6"><h2 class="text-2xl md:text-3xl font-bold">গবেষণা ভিত্তি</h2><p class="text-slate-500 mt-2">বাইরের সূত্র ও নিজেদের ডেটা থেকে পাওয়া ফল, এবং সেগুলো পরিকল্পনায় কীভাবে কাজ করেছে। যাচাইয়ের তারিখ ২৯ অক্টোবর ২০২৬।</p><div class="flex flex-wrap gap-2 mt-4 text-xs"><span class="badge badge-green">যাচাইকৃত সূত্র</span><span class="badge badge-amber">অনুমান / সূত্রভেদে ভিন্ন</span><span class="badge badge-blue">সুপারিশ</span></div></div>
+<div class="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
+<article class="panel p-5"><span class="badge badge-green">যাচাইকৃত সূত্র</span><div class="px mt-3" style="font-size:15px;line-height:1.5">৮৫.৬ লাখ</div><h3 class="font-bold mt-2">১৫–২৯ বছরের NEET যুবক</h3><p class="text-sm text-slate-600 leading-7 mt-1">BBS শ্রমশক্তি জরিপ ২০২৪ অনুযায়ী এই বয়সী প্রায় ২.৪৮ কোটি মানুষের মধ্যে ৮৫.৬ লাখ শিক্ষা, কাজ বা প্রশিক্ষণের বাইরে। জরিপভেদে NEET-এর সংজ্ঞা ও হার আলাদা।</p><p class="text-sm mt-2"><b>পরিকল্পনায় প্রভাব:</b> কলেজ ও পলিটেকনিকের শিক্ষার্থী, সদ্য উত্তীর্ণদের জন্য কাজ-ভিত্তিক স্বল্পমেয়াদি কোর্স; সেমিনার লক্ষ্য ৩০টি মিটিং।</p><a class="text-xs underline text-slate-500 mt-2 inline-block" href="https://thefinancialexpress.com.bd/home/bd-jobless-rate-hits-3-yr-high-at-366pc-in-2024" target="_blank" rel="noopener">সূত্র: The Financial Express (BBS LFS ২০২৪)</a></article><article class="panel p-5"><span class="badge badge-green">যাচাইকৃত সূত্র</span><div class="px mt-3" style="font-size:15px;line-height:1.5">৩.৬৬%</div><h3 class="font-bold mt-2">জাতীয় বেকারত্ব ২০২৪</h3><p class="text-sm text-slate-600 leading-7 mt-1">তিন বছরের সর্বোচ্চ। শহরে ৪.৪০%, গ্রামে ৩.৪০%। চাকরির বাজার সংকুচিত, তাই দক্ষতা-নির্ভর আয়ের বার্তা বেশি প্রাসঙ্গিক।</p><p class="text-sm mt-2"><b>পরিকল্পনায় প্রভাব:</b> বার্তায় দুটি পথ দেখানো: চাকরি-প্রস্তুতি ও ফ্রিল্যান্স আয়।</p><a class="text-xs underline text-slate-500 mt-2 inline-block" href="https://thefinancialexpress.com.bd/home/bd-jobless-rate-hits-3-yr-high-at-366pc-in-2024" target="_blank" rel="noopener">সূত্র: The Financial Express (BBS LFS ২০২৪)</a></article><article class="panel p-5"><span class="badge badge-green">যাচাইকৃত সূত্র</span><div class="px mt-3" style="font-size:15px;line-height:1.5">১৬%</div><h3 class="font-bold mt-2">অনলাইন শ্রমে বাংলাদেশের অংশ</h3><p class="text-sm text-slate-600 leading-7 mt-1">অক্সফোর্ড ইন্টারনেট ইনস্টিটিউটের সূচকে বাংলাদেশ বিশ্বে দ্বিতীয় এবং বিক্রয় ও মার্কেটিং সাপোর্টে এগিয়ে। সমীক্ষাটি পুরনো (২০১৯-এ প্রকাশিত)।</p><p class="text-sm mt-2"><b>পরিকল্পনায় প্রভাব:</b> ডিজিটাল মার্কেটিং কোর্সে ফ্রিল্যান্স মডিউল যোগ করে প্রচার।</p><a class="text-xs underline text-slate-500 mt-2 inline-block" href="https://www.thedailystar.net/bytes/bangladesh-second-in-supplying-online-labourers-says-study-by-oxford-internet-institute-1437082" target="_blank" rel="noopener">সূত্র: Daily Star (OII)</a></article><article class="panel p-5"><span class="badge badge-amber">অনুমান / সূত্রভেদে ভিন্ন</span><div class="px mt-3" style="font-size:15px;line-height:1.5">৫–১০ লাখ+</div><h3 class="font-bold mt-2">সক্রিয় ফ্রিল্যান্সার</h3><p class="text-sm text-slate-600 leading-7 mt-1">ICT বিভাগের পুরনো হিসাব ৬.৫ লাখ নিবন্ধিত ও ৫ লাখ সক্রিয়; ২০২৬-এর কিছু প্রতিবেদনে ৮ লাখ থেকে ১০.৫ লাখ। জানুয়ারি ২০২৬-এ freelancers.gov.bd-তে সরকারি ফ্রিল্যান্সার আইডি চালু হয়েছে।</p><p class="text-sm mt-2"><b>পরিকল্পনায় প্রভাব:</b> ভর্তির পর শিক্ষার্থীদের আইডি ও পোর্টফোলিও তৈরিতে সহায়তা; সংখ্যা প্রচারে ব্যবহার না করা।</p><a class="text-xs underline text-slate-500 mt-2 inline-block" href="https://socialprotection.gov.bd/wp-content/uploads/2026/02/Bangladeshs-500M-Industry.pdf" target="_blank" rel="noopener">সূত্র: socialprotection.gov.bd (২০২৬)</a></article><article class="panel p-5"><span class="badge badge-green">যাচাইকৃত সূত্র</span><div class="px mt-3" style="font-size:15px;line-height:1.5">ইন্টারনেট</div><h3 class="font-bold mt-2">ছোট শহরে স্থিতিশীলতার সমস্যা</h3><p class="text-sm text-slate-600 leading-7 mt-1">গ্রামীণ ও ছোট শহরের ফ্রিল্যান্সারদের প্রধান বাধা ইন্টারনেটের মান ও দাম। প্রশিক্ষণ কর্মসূচির আওতাও সীমিত।</p><p class="text-sm mt-2"><b>পরিকল্পনায় প্রভাব:</b> রেকর্ডেড ক্লাস, ল্যাবে অতিরিক্ত সময় এবং অনলাইন কোর্সে অফলাইন সহায়তা।</p><a class="text-xs underline text-slate-500 mt-2 inline-block" href="https://observerbd.com/news/552089" target="_blank" rel="noopener">সূত্র: The Observer (জুন ২০২৬)</a></article><article class="panel p-5"><span class="badge badge-blue">সুপারিশ</span><div class="px mt-3" style="font-size:15px;line-height:1.5">আয়ের দাবি</div><h3 class="font-bold mt-2">প্রতিশ্রুতি নয়, প্রমাণ</h3><p class="text-sm text-slate-600 leading-7 mt-1">নতুন ফ্রিল্যান্সারের প্রথম ক্লায়েন্ট পেতে সাধারণত সময় লাগে (শিল্প-ব্লগের তথ্য, কম নির্ভরযোগ্য)। নির্দিষ্ট আয়ের গ্যারান্টি দিলে অভিযোগ ও রিফান্ডের ঝুঁকি বাড়ে।</p><p class="text-sm mt-2"><b>পরিকল্পনায় প্রভাব:</b> প্রচারে প্রমাণিত শিক্ষার্থীর কাজের নমুনা ব্যবহার; আয়ের সংখ্যা নয়।</p><a class="text-xs underline text-slate-500 mt-2 inline-block" href="https://www.nsave.com/bangladesh/freelancing" target="_blank" rel="noopener">সূত্র: নিজস্ব সুপারিশ</a></article>
+</div>
+<div class="panel p-6 mt-6"><h3 class="text-xl font-bold">গবেষণা থেকে সিদ্ধান্ত</h3><div class="table-wrap mt-4"><table><thead><tr><th>গবেষণার ফল</th><th>সিদ্ধান্ত</th><th>কোথায়</th><th>মাপার সূচক</th></tr></thead><tbody>
+<tr><td>NEET যুবক বেশি</td><td>শিক্ষার্থী-কেন্দ্রিক সেমিনার</td><td>সব গ্রেড, বিশেষ করে C</td><td>মিটিং→লিড</td></tr>
+<tr><td>মার্কেটিং সাপোর্টে শক্তি</td><td>ডিজিটাল মার্কেটিংয়ে ফ্রিল্যান্স মডিউল</td><td>গ্রেড A ও B</td><td>লিড→ভর্তি</td></tr>
+<tr><td>প্ল্যাটফর্ম আয় বিদেশি</td><td>Stock Contributor কোর্স, ২ মাস, ২৪ ক্লাস</td><td>অনলাইন (গ্রেড D)</td><td>আপলোড ও অনুমোদন হার</td></tr>
+<tr><td>ইন্টারনেট ঝুঁকি</td><td>রেকর্ডেড ক্লাস ও ল্যাব ব্যাকআপ</td><td>সব জেলা</td><td>উপস্থিতি, ড্রপআউট</td></tr>
+<tr><td>আয়ের দাবি ঝুঁকিপূর্ণ</td><td>প্রমাণভিত্তিক প্রচার</td><td>ফেসবুক ও SMS</td><td>অভিযোগ ও রিফান্ড</td></tr>
+</tbody></table></div></div>
+<div class="panel p-6 mt-6"><h3 class="text-xl font-bold">লক্ষ্য ক্যালকুলেটর: ১৫০ ভর্তির জন্য কত লিড ও ব্যয়</h3><p class="text-sm text-slate-500 mt-1">নিচের তিনটি মান অনুমান। প্রথম ১৪ দিনের বেসলাইন পেলে বদলে নিন।</p>
+<div class="grid sm:grid-cols-3 gap-4 mt-4"><label class="text-sm font-semibold">লিড→ভর্তি (%)<input id="cConv" type="number" min="1" max="100" value="10" class="mt-2 w-full border rounded-xl p-3"></label><label class="text-sm font-semibold">প্রতি লিড খরচ (৳)<input id="cCpl" type="number" min="0" value="50" class="mt-2 w-full border rounded-xl p-3"></label><label class="text-sm font-semibold">গড় কোর্স আয় (৳)<input id="cFee" type="number" min="0" value="2400" class="mt-2 w-full border rounded-xl p-3"></label></div>
+<div id="cOut" class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-5"></div></div>
+</section>
+
+  <footer class="mt-8 text-center text-sm text-slate-500"><b class="text-slate-700">e-Learning &amp; Earning Ltd. · খুলনা বিভাগ</b> · ২৯ অক্টোবর–২৭ ডিসেম্বর ২০২৬</footer>
+</main>
+<script>
+const institutionDistricts = [
+ {name:'বাগেরহাট',en:'Bagerhat',total:589,school:330,madrasa:168,technical:36,college:35,schoolCollege:13,url:'https://tangail.net/institutions/d/bagerhat',poly:[],polyNote:'BTEB-এর বর্তমান প্রকাশিত পলিটেকনিক তালিকায় বাগেরহাট জেলার নামে পলিটেকনিক দেখানো নেই।'},
+ {name:'চুয়াডাঙ্গা',en:'Chuadanga',total:234,school:149,madrasa:40,technical:16,college:20,schoolCollege:5,url:'https://tangail.net/institutions/d/chuadanga',poly:[],polyNote:'BTEB-এর বর্তমান প্রকাশিত পলিটেকনিক তালিকায় চুয়াডাঙ্গা জেলার নামে পলিটেকনিক দেখানো নেই।'},
+ {name:'যশোর',en:'Jashore',total:1040,school:541,madrasa:314,technical:55,college:95,schoolCollege:24,url:'https://tangail.net/institutions/d/jashore',poly:['যশোর পলিটেকনিক ইনস্টিটিউট'],polyNote:'BTEB-এর প্রকাশিত তালিকায় ১টি পলিটেকনিক নাম।'},
+ {name:'ঝিনাইদহ',en:'Jhenaidah',total:519,school:302,madrasa:116,technical:21,college:61,schoolCollege:14,url:'https://tangail.net/institutions/d/jhenaidah',poly:['ঝিনাইদহ পলিটেকনিক ইন্সটিটিউট, ঝিনাইদহ'],polyNote:'BTEB-এর প্রকাশিত তালিকায় ১টি পলিটেকনিক নাম।'},
+ {name:'খুলনা',en:'Khulna',total:767,school:416,madrasa:135,technical:89,college:75,schoolCollege:29,url:'https://tangail.net/institutions/d/khulna',poly:['খুলনা পলিটেকনিক ইনস্টিটিউট','খুলনা মহিলা পলিটেকনিক ইন্সটিটিউট, খুলনা'],polyNote:'BTEB-এর প্রকাশিত তালিকায় ২টি পলিটেকনিক নাম।'},
+ {name:'কুষ্টিয়া',en:'Kushtia',total:508,school:320,madrasa:77,technical:32,college:57,schoolCollege:12,url:'https://tangail.net/institutions/d/kushtia',poly:['কুষ্টিয়া পলিটেকনিক ইনস্টিটিউট, কুষ্টিয়া'],polyNote:'BTEB-এর প্রকাশিত তালিকায় ১টি পলিটেকনিক নাম।'},
+ {name:'মাগুরা',en:'Magura',total:320,school:173,madrasa:76,technical:28,college:28,schoolCollege:11,url:'https://tangail.net/institutions/d/magura',poly:['মাগুরা পলিটেকনিক ইন্সটিটিউট'],polyNote:'BTEB-এর প্রকাশিত তালিকায় ১টি পলিটেকনিক নাম।'},
+ {name:'মেহেরপুর',en:'Meherpur',total:188,school:129,madrasa:26,technical:12,college:15,schoolCollege:5,url:'https://tangail.net/institutions/d/meherpur',poly:[],polyNote:'BTEB-এর বর্তমান প্রকাশিত পলিটেকনিক তালিকায় মেহেরপুর জেলার নামে পলিটেকনিক দেখানো নেই।'},
+ {name:'নড়াইল',en:'Narail',total:217,school:137,madrasa:44,technical:7,college:24,schoolCollege:2,url:'https://tangail.net/institutions/d/narail',poly:[],polyNote:'BTEB-এর বর্তমান প্রকাশিত পলিটেকনিক তালিকায় নড়াইল জেলার নামে পলিটেকনিক দেখানো নেই।'},
+ {name:'সাতক্ষীরা',en:'Satkhira',total:667,school:329,madrasa:214,technical:42,college:62,schoolCollege:13,url:'https://tangail.net/institutions/d/satkhira',poly:['সাতক্ষীরা পলিটেকনিক ইনস্টিটিউট'],polyNote:'BTEB-এর প্রকাশিত তালিকায় ১টি পলিটেকনিক নাম।'}
+];
+const T={college:'সরকারি কলেজ',poly:'পলিটেকনিক',tsc:'টেকনিক্যাল স্কুল ও কলেজ',uni:'বিশ্ববিদ্যালয়',med:'মেডিকেল কলেজ',school:'স্কুল',madrasa:'মাদরাসা'};
+const UP={Bagerhat:['বাগেরহাট সদর','চিতলমারী','ফকিরহাট','কচুয়া','মোল্লাহাট','মোংলা','মোড়েলগঞ্জ','রামপাল','শরণখোলা'],Chuadanga:['চুয়াডাঙ্গা সদর','আলমডাঙ্গা','দামুড়হুদা','জীবননগর'],Jashore:['যশোর সদর','অভয়নগর','বাঘারপাড়া','চৌগাছা','ঝিকরগাছা','কেশবপুর','মণিরামপুর','শার্শা'],Jhenaidah:['ঝিনাইদহ সদর','হরিণাকুন্ডু','কালীগঞ্জ','কোটচাঁদপুর','মহেশপুর','শৈলকুপা'],Khulna:['খুলনা মহানগর','বটিয়াঘাটা','দাকোপ','ডুমুরিয়া','দিঘলিয়া','কয়রা','পাইকগাছা','ফুলতলা','রূপসা','তেরখাদা'],Kushtia:['কুষ্টিয়া সদর','ভেড়ামারা','দৌলতপুর','খোকসা','কুমারখালী','মিরপুর'],Magura:['মাগুরা সদর','মহম্মদপুর','শালিখা','শ্রীপুর'],Meherpur:['মেহেরপুর সদর','গাংনী','মুজিবনগর'],Narail:['নড়াইল সদর','কালিয়া','লোহাগড়া'],Satkhira:['সাতক্ষীরা সদর','আশাশুনি','দেবহাটা','কলারোয়া','কালীগঞ্জ','শ্যামনগর','তালা']};
+const INS=[];function add(en,t,a){a.forEach(s=>{const[p,n]=s.split('|');INS.push([en,p,t,n])})}
+add('Bagerhat','college',['বাগেরহাট সদর|বাগেরহাট সরকারি মহিলা কলেজ','বাগেরহাট সদর|সরকারি পি.সি. কলেজ','মোংলা|মোংলা সরকারি কলেজ']);
+add('Chuadanga','college',['চুয়াডাঙ্গা সদর|আদর্শ সরকারি মহিলা কলেজ','চুয়াডাঙ্গা সদর|চুয়াডাঙ্গা সরকারি কলেজ','দামুড়হুদা|দর্শনা সরকারি কলেজ']);
+add('Jashore','college',['যশোর সদর|সরকারি এম.এম. কলেজ','যশোর সদর|যশোর সরকারি সিটি কলেজ','যশোর সদর|যশোর সরকারি কলেজ','যশোর সদর|যশোর সরকারি মহিলা কলেজ','শার্শা|বীরশ্রেষ্ঠ নূর মোহাম্মদ ডিগ্রি কলেজ']);
+add('Jhenaidah','college',['হরিণাকুন্ডু|লালনশাহ সরকারি কলেজ','ঝিনাইদহ সদর|নূরুন্নাহার মহিলা কলেজ','ঝিনাইদহ সদর|সরকারি কে.সি. কলেজ','কোটচাঁদপুর|খন্দকার মোশারফ হোসেন সরকারি কলেজ','মহেশপুর|বীরশ্রেষ্ঠ হামিদুর রহমান ডিগ্রি কলেজ','মহেশপুর|মহেশপুর সরকারি ডিগ্রি কলেজ','শৈলকুপা|শৈলকুপা সরকারি কলেজ']);
+add('Khulna','college',['দাকোপ|এল.বি.কে. ডিগ্রি মহিলা কলেজ','খুলনা মহানগর|সরকারি হাজী মুহাম্মদ মুহসিন ডিগ্রি কলেজ','খুলনা মহানগর|খুলনা সরকারি মহিলা কলেজ','খুলনা মহানগর|আজম খান বাণিজ্য কলেজ','খুলনা মহানগর|মজিদ মেমোরিয়াল সরকারি সিটি কলেজ','খুলনা মহানগর|পাইওনিয়ার সরকারি মহিলা কলেজ','খুলনা মহানগর|সরকারি বি.এল. কলেজ','খুলনা মহানগর|সরকারি জয়বাংলা কলেজ','খুলনা মহানগর|সরকারি সুন্দরবন আদর্শ কলেজ','কয়রা|কয়রা সরকারি মহিলা কলেজ','রূপসা|বঙ্গবন্ধু কলেজ']);
+add('Kushtia','college',['কুষ্টিয়া সদর|কুষ্টিয়া সরকারি কলেজ','কুষ্টিয়া সদর|কুষ্টিয়া মহিলা কলেজ','কুষ্টিয়া সদর|কুষ্টিয়া সরকারি সিটি কলেজ','মিরপুর|আমলা সরকারি কলেজ']);
+add('Magura','college',['মাগুরা সদর|হোসেন শহীদ সোহরাওয়ার্দী সরকারি কলেজ','মাগুরা সদর|মাগুরা সরকারি মহিলা কলেজ']);
+add('Meherpur','college',['গাংনী|গাংনী সরকারি ডিগ্রী কলেজ','মেহেরপুর সদর|মেহেরপুর সরকারি কলেজ','মেহেরপুর সদর|মেহেরপুর সরকারি মহিলা কলেজ','মুজিবনগর|মুজিবনগর সরকারি ডিগ্রি কলেজ']);
+add('Narail','college',['লোহাগড়া|লোহাগড়া আদর্শ মহাবিদ্যালয়','নড়াইল সদর|নড়াইল সরকারি মহিলা কলেজ','নড়াইল সদর|নড়াইল ভিক্টোরিয়া কলেজ']);
+add('Satkhira','college',['আশাশুনি|আশাশুনি ডিগ্রি কলেজ','কলারোয়া|কলারোয়া সরকারি কলেজ','সাতক্ষীরা সদর|সাতক্ষীরা সরকারি মহিলা কলেজ','সাতক্ষীরা সদর|সাতক্ষীরা সরকারি কলেজ','শ্যামনগর|শ্যামনগর মহসীন ডিগ্রি কলেজ','তালা|তালা সরকারি কলেজ']);
+add('Jashore','poly',['যশোর সদর|যশোর পলিটেকনিক ইনস্টিটিউট']);add('Jhenaidah','poly',['ঝিনাইদহ সদর|ঝিনাইদহ পলিটেকনিক ইনস্টিটিউট']);
+add('Khulna','poly',['খুলনা মহানগর|খুলনা পলিটেকনিক ইনস্টিটিউট','খুলনা মহানগর|খুলনা মহিলা পলিটেকনিক ইনস্টিটিউট','খুলনা মহানগর|সিটি পলিটেকনিক ইনস্টিটিউট (বেসরকারি)']);
+add('Kushtia','poly',['কুষ্টিয়া সদর|কুষ্টিয়া পলিটেকনিক ইনস্টিটিউট']);add('Magura','poly',['মাগুরা সদর|মাগুরা পলিটেকনিক ইনস্টিটিউট']);add('Satkhira','poly',['সাতক্ষীরা সদর|সাতক্ষীরা পলিটেকনিক ইনস্টিটিউট']);
+add('Khulna','tsc',['পাইকগাছা|পাইকগাছা সরকারি টেকনিক্যাল স্কুল ও কলেজ','ডুমুরিয়া|ডুমুরিয়া সরকারি টেকনিক্যাল স্কুল ও কলেজ','বটিয়াঘাটা|বটিয়াঘাটা সরকারি টেকনিক্যাল স্কুল ও কলেজ']);
+add('Khulna','uni',['খুলনা মহানগর|খুলনা বিশ্ববিদ্যালয়','খুলনা মহানগর|খুলনা প্রকৌশল ও প্রযুক্তি বিশ্ববিদ্যালয় (কুয়েট)']);add('Jashore','uni',['যশোর সদর|যশোর বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়']);
+add('Khulna','med',['খুলনা মহানগর|খুলনা মেডিকেল কলেজ']);add('Magura','med',['মাগুরা সদর|মাগুরা মেডিকেল কলেজ']);
+const fd=document.getElementById('insDist'),fu=document.getElementById('insUp'),fq=document.getElementById('insQ'),chips=document.getElementById('insChips'),out=document.getElementById('insOut');let curT='';
+institutionDistricts.forEach(d=>fd.add(new Option(d.name,d.en)));
+Object.entries({'':'সব ধরন',...T}).forEach(([k,v])=>{const b=document.createElement('button');b.type='button';b.className='chip'+(k===''?' on':'');b.textContent=v;b.onclick=()=>{curT=k;chips.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c===b));rIns()};chips.appendChild(b)});
+const dn=en=>(institutionDistricts.find(x=>x.en===en)||{}).name||en;
+function rIns(){
+ const d=fd.value,u=fu.value,q=fq.value.trim(),dd=institutionDistricts.find(x=>x.en===d);let h='';
+ if(dd)h+='<div class="grid grid-cols-2 sm:grid-cols-5 gap-2 mb-4">'+[['মোট প্রতিষ্ঠান',dd.total],['স্কুল',dd.school],['মাদরাসা',dd.madrasa],['কলেজ',dd.college],['কারিগরি',dd.technical]].map(x=>'<div class="rounded-xl bg-slate-50 p-3"><div class="text-xs text-slate-500">'+x[0]+'</div><div class="text-xl font-bold">'+x[1].toLocaleString('bn-BD')+'</div></div>').join('')+'</div>';
+ if(curT==='school'||curT==='madrasa'){h+='<div class="rounded-xl bg-amber-50 border border-amber-100 p-4 text-sm">স্কুল ও মাদরাসার উপজেলা-ভিত্তিক নামের তালিকা এখনো যুক্ত হয়নি। জেলার সংখ্যা উপরে দেখুন; পূর্ণ নাম ও EIIN <a class="underline font-semibold text-teal-800" href="https://institute-search.ieims.banbeis.gov.bd/" target="_blank" rel="noopener">BANBEIS Institute Search ↗</a> থেকে নিন।</div>';out.innerHTML=h;return}
+ const list=INS.filter(x=>(!d||x[0]===d)&&(!u||x[1]===u)&&(!curT||x[2]===curT)&&(!q||x[3].includes(q)));
+ const g={};list.forEach(x=>{(g[x[0]+'|'+x[1]]=g[x[0]+'|'+x[1]]||[]).push(x)});
+ const keys=Object.keys(g);
+ if(!keys.length)h+='<div class="rounded-xl bg-slate-50 p-5 text-sm text-slate-600">এই নির্বাচনে যাচাইকৃত নাম এখনো যুক্ত হয়নি।</div>';
+ else h+='<div class="text-sm text-slate-500 mb-3">'+list.length.toLocaleString('bn-BD')+'টি প্রতিষ্ঠান</div><div class="space-y-4">'+keys.map(k=>{const[en,p]=k.split('|');return '<div><div class="font-bold text-slate-900 mb-2">'+dn(en)+' › '+p+' <span class="text-xs font-medium text-slate-400">('+g[k].length.toLocaleString('bn-BD')+')</span></div><div class="grid md:grid-cols-2 gap-2">'+g[k].map(x=>'<div class="flex justify-between gap-3 items-center rounded-xl border border-slate-100 px-3 py-2.5 text-sm"><span>'+x[3]+'</span><span class="badge badge-slate shrink-0">'+T[x[2]]+'</span></div>').join('')+'</div></div>'}).join('')+'</div>';
+ out.innerHTML=h;
+}
+fd.onchange=()=>{fu.innerHTML='<option value="">সব উপজেলা</option>'+(UP[fd.value]||[]).map(x=>'<option>'+x+'</option>').join('');fu.disabled=!fd.value;rIns()};
+fu.onchange=rIns;fq.oninput=rIns;rIns();
+
+const districts = [
+ {name:'চুয়াডাঙ্গা',en:'Chuadanga',aug:11,augRev:50700,sep:5,sepRev:18220,oct:9,octRev:60000,total:25,rev:128920,target:25,action:'উচ্চ আয়ের উৎস, কোর্স ও পেমেন্ট পদ্ধতি শনাক্ত করে কার্যকর কৌশল নথিভুক্ত করুন।'},
+ {name:'কুষ্টিয়া',en:'Kushtia',aug:3,augRev:12000,sep:9,sepRev:22000,oct:13,octRev:9300,total:25,rev:43300,target:28,action:'লিড-টু-ভর্তি কনভার্সন, কোর্স ফি, কিস্তি ও বকেয়া বিশ্লেষণ করুন।'},
+ {name:'মাগুরা',en:'Magura',aug:4,augRev:22500,sep:5,sepRev:4600,oct:11,octRev:10000,total:20,rev:37100,target:22,action:'ফলোআপের গতি বাড়ান; আয়-আদায় ও পেমেন্ট স্ট্যাটাস যাচাই করুন।'},
+ {name:'বাগেরহাট',en:'Bagerhat',aug:0,augRev:0,sep:0,sepRev:0,oct:18,octRev:51000,total:18,rev:51000,target:30,action:'অক্টোবরের ১৮ ভর্তির লিড সোর্স ও কার্যকর প্রচার যাচাই করে স্কেল করুন।'},
+ {name:'ঝিনাইদহ',en:'Jhenaidah',aug:0,augRev:0,sep:4,sepRev:6000,oct:9,octRev:16000,total:13,rev:22000,target:18,action:'প্রতিষ্ঠানভিত্তিক প্রচার, সেমিনার ও লিড ফলোআপ বাড়ান।'},
+ {name:'সাতক্ষীরা',en:'Satkhira',aug:0,augRev:0,sep:5,sepRev:12500,oct:6,octRev:9500,total:11,rev:22000,target:12,action:'অক্টোবরের কার্যক্রমের ধারাবাহিকতা রাখুন; কোন চ্যানেল কাজ করছে মাপুন।'},
+ {name:'খুলনা',en:'Khulna',aug:0,augRev:0,sep:1,sepRev:1000,oct:2,octRev:1000,total:3,rev:2000,target:8,action:'বাজার ও লিড অডিট; চাহিদা, সময়সূচি ও প্রতিযোগিতা যাচাই করে ছোট পাইলট চালান।'},
+ {name:'যশোর',en:'Jashore',aug:0,augRev:0,sep:0,sepRev:0,oct:0,octRev:0,total:0,rev:0,target:3,action:'স্কুল/কলেজ/প্রতিষ্ঠানের তালিকা, চাহিদা যাচাই ও স্বল্প-খরচের পাইলট।'},
+ {name:'নড়াইল',en:'Narail',aug:0,augRev:0,sep:0,sepRev:0,oct:0,octRev:0,total:0,rev:0,target:2,action:'অনলাইন ওয়েবিনার ও লিড টেস্ট দিয়ে বাজার যাচাই; বড় স্থায়ী খরচ এড়ান।'},
+ {name:'মেহেরপুর',en:'Meherpur',aug:0,augRev:0,sep:0,sepRev:0,oct:0,octRev:0,total:0,rev:0,target:2,action:'শিক্ষার্থী ও প্রতিষ্ঠানের চাহিদা যাচাই করে কম-খরচের পরীক্ষামূলক প্রচারণা চালান।'}
+];
+const fmt = n => Number(n||0).toLocaleString('en-US');
+const money = n => '৳'+fmt(n);
+function renderTable(filter=''){
+ const body=document.querySelector('#districtTable tbody');
+ body.innerHTML='';
+ districts.filter(d=>(d.name+d.en).toLowerCase().includes(filter.toLowerCase())).forEach(d=>{
+ const tr=document.createElement('tr');
+ tr.innerHTML=`<td class="font-semibold">${d.name} <span class="text-slate-400 text-xs">(${d.en})</span></td><td>${d.aug}</td><td>${d.sep}</td><td>${d.oct}</td><td class="font-bold">${d.total}</td><td>${money(d.rev)}</td><td class="font-bold text-teal-700">${d.target}</td><td>${d.total?money(Math.round(d.rev/d.total)):"—"}</td><td>${Math.round(d.total/115*100)}%</td>`;
+ body.appendChild(tr);
+ });
+}
+renderTable();
+document.getElementById('districtSearch').addEventListener('input',e=>renderTable(e.target.value));
+// Move existing section buttons into the workspace rail without changing section logic.
+const railNav=document.getElementById('workspaceNav');
+const tabIcons={overview:'⌂',map:'⌖',performance:'↗',institutions:'▦',strategy:'✳',plan:'◷',kpi:'◉',data:'≡',masterplan:'✦',research:'◈'};
+document.querySelectorAll('.tab-btn').forEach(btn=>{btn.dataset.icon=tabIcons[btn.dataset.tab]||'•';railNav.appendChild(btn)});
+function revealSectionText(section){
+ if(!section)return;
+ const nodes=section.querySelectorAll('h1,h2,h3,h4,p,li,.badge,article>.text-sm,article>.text-xs');let n=0;
+ nodes.forEach(el=>{if(el.closest('script,style')||el.classList.contains('reveal-line'))return;el.classList.add('reveal-line');el.style.setProperty('--reveal-delay',Math.min(n*42,900)+'ms');n++});
+}
+document.querySelectorAll('.tab-btn').forEach(btn=>btn.addEventListener('click',()=>{
+ document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active',b===btn));
+ document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active',s.id===btn.dataset.tab));
+ const active=document.getElementById(btn.dataset.tab);if(active){active.querySelectorAll('.reveal-line').forEach(el=>{el.classList.remove('reveal-line');el.style.removeProperty('--reveal-delay')});requestAnimationFrame(()=>revealSectionText(active));}
+ if(btn.dataset.tab==='map' && window.khMap){setTimeout(()=>window.khMap.invalidateSize(),180);}
+ if(window.matchMedia('(max-width:760px)').matches)btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+}));
+revealSectionText(document.querySelector('.section.active'));
+const chartText='#486581';
+if(window.Chart){
+ Chart.defaults.font.family="'Hind Siliguri', sans-serif";Chart.defaults.color=chartText;
+ new Chart(document.getElementById('monthlyEnrollChart'),{type:'bar',data:{labels:['আগস্ট','সেপ্টেম্বর','অক্টোবর (১–২৮)'],datasets:[{label:'ভর্তি',data:[18,29,68],backgroundColor:['#a7f3d0','#5eead4','#0f766e'],borderRadius:9,maxBarThickness:52}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'#edf2f7'}},x:{grid:{display:false}}}}});
+ const sorted=[...districts].sort((a,b)=>a.total-b.total);
+ new Chart(document.getElementById('districtEnrollChart'),{type:'bar',data:{labels:sorted.map(d=>d.name),datasets:[{label:'মোট ভর্তি',data:sorted.map(d=>d.total),backgroundColor:sorted.map(d=>d.total===0?'#cbd5e1':d.total>=18?'#0f766e':'#5eead4'),borderRadius:6}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{color:'#edf2f7'}},y:{grid:{display:false}}}}});
+ const revSorted=[...districts].sort((a,b)=>a.rev-b.rev);
+ new Chart(document.getElementById('districtRevenueChart'),{type:'bar',data:{labels:revSorted.map(d=>d.name),datasets:[{label:'আয় (৳)',data:revSorted.map(d=>d.rev),backgroundColor:revSorted.map(d=>d.rev>=50000?'#0f766e':d.rev===0?'#cbd5e1':'#5eead4'),borderRadius:6}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+money(c.raw)}}},scales:{x:{beginAtZero:true,ticks:{callback:v=>'৳'+Number(v).toLocaleString('en-US')},grid:{color:'#edf2f7'}},y:{grid:{display:false}}}}});
+}
+// district map via public ArcGIS feature service, filtered to Khulna Division
+function colorFor(d){return d.total>=18?'#0f766e':d.total>0?'#5eead4':'#cbd5e1'}
+function selectDistrict(d){
+ document.getElementById('selectedDistrict').textContent=d.name;
+ document.getElementById('selectedDistrictNote').textContent=d.en+' · জেলা-সারি অনুযায়ী';
+ document.getElementById('dEnroll').textContent=d.total+' জন';
+ document.getElementById('dRevenue').textContent=money(d.rev);
+ document.getElementById('dOct').textContent=d.oct+' জন';
+ document.getElementById('dTarget').textContent=d.target+' জন';
+ document.getElementById('dProgressLabel').textContent='বাস্তব ফল যোগ হয়নি';
+ document.getElementById('dProgress').style.width='0%';
+ document.getElementById('dAction').textContent=d.action;
+ document.getElementById('districtSelect').value=d.en;
+ if(window.khLayers){window.khLayers.eachLayer(layer=>{let p=layer.feature.properties||{};let n=p.district||p.DISTRICT||p.District||p.name||p.NAME; if(n && normalize(n)===normalize(d.en)){layer.setStyle({weight:3,color:'#102a43',fillOpacity:.9});}else{layer.setStyle({weight:1.5,color:'#ffffff',fillOpacity:.75});}});}
+}
+function normalize(s){return String(s||'').toLowerCase().replace(/[^a-z]/g,'')}
+const select=document.getElementById('districtSelect');
+districts.forEach(d=>{let o=document.createElement('option');o.value=d.en;o.textContent=d.name+' ('+d.en+')';select.appendChild(o)});
+select.addEventListener('change',()=>{const d=districts.find(x=>x.en===select.value);if(d)selectDistrict(d)});
+if(window.L){
+ const map=L.map('districtMap',{scrollWheelZoom:false}).setView([22.95,89.25],8);window.khMap=map;
+ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:18}).addTo(map);
+ const query='https://gis.dghs.gov.bd/server/rest/services/Hosted/All_Districts/FeatureServer/0/query?where='+encodeURIComponent("division='Khulna'")+'&outFields=*&returnGeometry=true&outSR=4326&f=geojson';
+ fetch(query).then(r=>{if(!r.ok)throw new Error('GIS request failed');return r.json()}).then(geo=>{
+  const matched={};
+  window.khLayers=L.geoJSON(geo,{style:f=>{const p=f.properties||{};const raw=p.district||p.DISTRICT||p.District||p.name||p.NAME||'';const d=districts.find(x=>normalize(x.en)===normalize(raw)||normalize(x.name)===normalize(raw));if(d)matched[d.en]=true;return {color:'#ffffff',weight:1.5,fillColor:d?colorFor(d):'#cbd5e1',fillOpacity:.8};},
+   onEachFeature:(f,layer)=>{const p=f.properties||{};const raw=p.district||p.DISTRICT||p.District||p.name||p.NAME||'জেলা';const d=districts.find(x=>normalize(x.en)===normalize(raw)||normalize(x.name)===normalize(raw));
+    layer.bindTooltip(d?d.name:raw,{sticky:true});layer.on({mouseover:e=>e.target.setStyle({weight:3,color:'#102a43',fillOpacity:.95}),mouseout:e=>{if(!d || document.getElementById('districtSelect').value!==d.en)e.target.setStyle({weight:1.5,color:'#ffffff',fillOpacity:.8})},click:()=>{if(d){selectDistrict(d);window.levelUp&&levelUp(d)}}});
+    if(d)layer.bindPopup(`<b>${d.name}</b><br>মোট ভর্তি: ${d.total}<br>অক্টোবর ভর্তি: ${d.oct}<br>রিপোর্টকৃত আয়: ${money(d.rev)}<br>৬০ দিনের লক্ষ্য: ${d.target} ভর্তি`);
+   }}).addTo(map);
+  try{map.fitBounds(window.khLayers.getBounds(),{padding:[12,12]})}catch(e){}
+  document.getElementById('mapStatus').textContent='রঙ: ভর্তি অনুযায়ী; ধূসর: ভর্তি নেই।';
+  selectDistrict(districts.find(d=>d.en==='Bagerhat'));
+ }).catch(err=>{
+  document.getElementById('mapStatus').textContent='সীমানা লোড হয়নি; জেলা বোর্ড বা ড্রপডাউন ব্যবহার করুন।';
+  // Fallback marker map with known district coordinates
+  const coords={Chuadanga:[23.64,88.85],Kushtia:[23.90,89.12],Magura:[23.49,89.42],Bagerhat:[22.65,89.78],Jhenaidah:[23.54,89.15],Satkhira:[22.72,89.07],Khulna:[22.82,89.57],Jashore:[23.17,89.21],Narail:[23.17,89.50],Meherpur:[23.76,88.63]};
+  const group=L.featureGroup();
+  districts.forEach(d=>{let c=coords[d.en];if(!c)return;let m=L.circleMarker(c,{radius:8+Math.min(d.total,25)*.3,fillColor:colorFor(d),color:'#fff',weight:2,fillOpacity:.9}).addTo(group);m.bindTooltip(d.name);m.bindPopup(`<b>${d.name}</b><br>মোট ভর্তি: ${d.total}<br>রিপোর্টকৃত আয়: ${money(d.rev)}<br>৬০ দিনের লক্ষ্য: ${d.target}`);m.on('click',()=>{selectDistrict(d);window.levelUp&&levelUp(d)});});
+  group.addTo(map);map.fitBounds(group.getBounds(),{padding:[20,20]});selectDistrict(districts[0]);
+ });
+}
+document.getElementById('makeSummary').addEventListener('click',()=>{
+ const val=id=>Number(document.getElementById(id).value||0);
+ const wk=document.getElementById('weekField').value, leads=val('fLeads'), enroll=val('fEnroll'), revenue=val('fRevenue'), spend=val('fSpend'), meet=val('fMeet'), events=val('fEvents'), due=val('fDue'), notes=document.getElementById('fNotes').value.trim();
+ const conv=leads?((enroll/leads)*100).toFixed(1)+'%':'হিসাবের জন্য লিড দিন';
+ const cpl=leads?'৳'+fmt(Math.round(spend/leads)):'হিসাবের জন্য লিড দিন';
+ const cac=enroll?'৳'+fmt(Math.round(spend/enroll)):'হিসাবের জন্য ভর্তি দিন';
+ const box=document.getElementById('weeklySummary');box.classList.remove('hidden');
+ box.innerHTML=`<h4 class="font-bold text-lg">${wk} · সাপ্তাহিক সারাংশ</h4><div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-3"><div><span class="text-sm text-slate-500">লিড</span><div class="font-bold text-xl">${fmt(leads)}</div></div><div><span class="text-sm text-slate-500">পেইড ভর্তি</span><div class="font-bold text-xl">${fmt(enroll)}</div></div><div><span class="text-sm text-slate-500">রিপোর্টকৃত আয়</span><div class="font-bold text-xl">${money(revenue)}</div></div><div><span class="text-sm text-slate-500">বকেয়া</span><div class="font-bold text-xl">${money(due)}</div></div></div><p class="mt-4">কনভার্সন: <b>${conv}</b> · CPL: <b>${cpl}</b> · CAC (বিজ্ঞাপন ব্যয়/ভর্তি): <b>${cac}</b></p><p>বিজ্ঞাপন ব্যয়: <b>${money(spend)}</b> · প্রতিষ্ঠান মিটিং: <b>${meet}</b> · সেমিনার/ডেমো: <b>${events}</b></p><p class="mt-3"><b>সিদ্ধান্ত/পরবর্তী পদক্ষেপ:</b> ${notes||'মন্তব্য যোগ করা হয়নি।'}</p>`;
+});
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.08});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+const counterObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(!e.isIntersecting)return;const el=e.target,target=Number(el.dataset.target);let start=null;function step(ts){if(!start)start=ts;let p=Math.min((ts-start)/900,1);el.textContent=Math.floor(target*(1-Math.pow(1-p,3))).toLocaleString('en-US');if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step);counterObserver.unobserve(el)}),{threshold:.5});
+document.querySelectorAll('.counter').forEach(el=>counterObserver.observe(el));
+</script>
+<script>
+(function(){
+const wrap=document.getElementById('stageWrap'),st=document.getElementById('stage'),cap=document.getElementById('stageCap');
+if(!wrap||typeof districts==='undefined')return;
+const rm=matchMedia('(prefers-reduced-motion:reduce)').matches,bn=n=>Number(n).toLocaleString('bn-BD'),def='উচ্চতা = আগস্ট–অক্টোবরে ভর্তি · টেনে ঘোরান, ক্লিক করে জেলা বেছে নিন';
+let rx=58,rz=-35,drag=false,moved=0,lx=0,ly=0,vis=true,sel=null,t0=null;cap.textContent=def;
+const cols=districts.map((d,i)=>{const c=document.createElement('div');c.className='col';c.dataset.i=i;
+ c.style.transform='translate3d('+((i%5-2)*62-22)+'px,'+((Math.floor(i/5)-.5)*72-22)+'px,0)';
+ c.style.setProperty('--c',d.total>=18?'#22c55e':d.total>0?'#60a5fa':'#cbd5e1');
+ c.innerHTML='<b class="f"></b><b class="b"></b><b class="l"></b><b class="r"></b><b class="t"></b>';st.appendChild(c);return{c,d,h:8+d.total*7}});
+const apply=()=>{st.style.transform='rotateX('+rx+'deg) rotateZ('+rz+'deg)'};
+function frame(ts){
+ if(t0===null)t0=ts;
+ cols.forEach((o,i)=>{const p=Math.min(Math.max((ts-t0-i*70)/900,0),1);o.c.style.setProperty('--h',(o.h*(1-Math.pow(1-p,3))).toFixed(1))});
+ if(!drag&&!rm&&vis)rz+=.1;
+ apply();requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+new IntersectionObserver(e=>{vis=e[0].isIntersecting}).observe(wrap);
+wrap.addEventListener('pointerdown',e=>{drag=true;moved=0;lx=e.clientX;ly=e.clientY;wrap.setPointerCapture(e.pointerId)});
+wrap.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-lx,dy=e.clientY-ly;moved+=Math.abs(dx)+Math.abs(dy);lx=e.clientX;ly=e.clientY;rz+=dx*.4;rx=Math.min(80,Math.max(35,rx-dy*.3))});
+['pointerup','pointercancel'].forEach(n=>wrap.addEventListener(n,()=>{drag=false}));
+const pick=e=>{const c=e.target.closest('.col');return c&&cols[c.dataset.i]};
+wrap.addEventListener('click',e=>{if(moved>6)return;const o=pick(e);if(!o)return;cols.forEach(x=>x.c.classList.toggle('sel',x===o));sel=o.d;cap.textContent=o.d.name+' · '+bn(o.d.total)+' ভর্তি';if(typeof selectDistrict==='function'){selectDistrict(o.d);if(window.levelUp)levelUp(o.d)}});
+wrap.addEventListener('mouseover',e=>{const o=pick(e);if(o)cap.textContent=o.d.name+' · '+bn(o.d.total)+' ভর্তি'});
+wrap.addEventListener('mouseout',()=>{cap.textContent=sel?sel.name+' · '+bn(sel.total)+' ভর্তি':def});
+if(matchMedia('(hover:hover)').matches&&!rm)document.querySelectorAll('.kpi,#strategy article.panel,#plan article.panel').forEach(el=>{el.classList.add('tilt');
+ el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;el.style.transform='perspective(900px) rotateY('+x*7+'deg) rotateX('+(-y*7)+'deg) translateY(-2px)'});
+ el.addEventListener('pointerleave',()=>{el.style.transform=''})});
+addEventListener('scroll',()=>{const m=document.documentElement.scrollHeight-innerHeight;document.documentElement.style.setProperty('--p',m>0?(scrollY/m).toFixed(3):1)},{passive:true});
+document.documentElement.style.setProperty('--p',0);
+})();
+</script>
+<script>
+(function(){
+const D=typeof districts!=='undefined'?districts:[],$=id=>document.getElementById(id),sum=k=>D.reduce((a,d)=>a+d[k],0);
+const enr=sum('total'),rev=sum('rev'),A=D.filter(d=>d.total>=18).length,goal=150;
+const day=Math.min(60,Math.max(0,Math.floor((Date.now()-new Date('2026-10-29T00:00:00+06:00'))/864e5)+1));
+$('hxT').textContent=enr+'/'+goal;$('hCoin').textContent='৳'+rev.toLocaleString('en-US');$('hDay').textContent=day+'/60';$('hStar').textContent=A+'/'+D.length;
+setTimeout(()=>{$('hxB').style.width=Math.min(100,enr/goal*100)+'%'},250);
+const lv=[[1,15],[16,30],[31,46],[47,60]];
+document.querySelectorAll('#plan article.panel[class*="border-t-4"]').forEach((el,i)=>{const r=lv[i];if(!r)return;
+ const st=day>r[1]?'done':day>=r[0]?'now':'lock';el.classList.add('lv-'+st);
+ const t=document.createElement('span');t.className='lvtag';t.textContent='লেভেল '+(i+1)+' · '+({done:'সম্পন্ন',now:'চলমান',lock:'আসছে'})[st];el.appendChild(t)});
+})();
+</script>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+const D=districts,$=id=>document.getElementById(id),bn=n=>Number(n).toLocaleString('bn-BD'),fm=n=>'৳'+Math.round(n).toLocaleString('en-US');
+const tot=D.reduce((a,d)=>a+d.total,0),rev=D.reduce((a,d)=>a+d.rev,0),oct=D.reduce((a,d)=>a+d.oct,0),gr=d=>d.total>=18?'A':d.total>=11?'B':'C';
+const ACT={Chuadanga:'আয়ের ৪২% এখান থেকে। আগস্টে ১১ ভর্তি হলেও অক্টোবরে ৯; আগস্টের লিড উৎস ও কোর্স খুঁজে আবার চালান।',Kushtia:'ভর্তি ৩→৯→১৩ বাড়ছে, কিন্তু আয়/ভর্তি মাত্র ৳১,৭৩২। ফি, কিস্তি ও বকেয়া মিলিয়ে নিন।',Magura:'ভর্তি ৪→৫→১১; আয়/ভর্তি ৳১,৮৫৫। অক্টোবরের গতি ধরে রাখুন এবং ফি আদায়ের অবস্থা যাচাই করুন।',Bagerhat:'সব ১৮ ভর্তি অক্টোবরে (আয় ৳৫১,০০০)। কোন লিড উৎস ও কোর্সে হয়েছে লিখে রাখুন, তারপর পাশের জেলায় প্রয়োগ করুন।',Jhenaidah:'সেপ্টেম্বরে ৪, অক্টোবরে ৯ ভর্তি; আয়/ভর্তি ৳১,৬৯২, কম। পলিটেকনিক অ্যাটাচমেন্ট থেকে লিড বাড়ান।',Satkhira:'ভর্তি ৫ ও ৬, স্থির। অ্যাটাচমেন্টের শিক্ষার্থী ও কলেজ সেমিনার থেকে লিড বাড়িয়ে ১২-র লক্ষ্যে যান।',Khulna:'৭৬৭টি প্রতিষ্ঠান, অথচ ৩ মাসে ৩ ভর্তি। বাজার বড়, ভর্তি কম; লিড অডিট ও কলেজ-পলিটেকনিকে সেমিনার দিয়ে পাইলট করুন।',Jashore:'১,০৪০টি প্রতিষ্ঠান, বিভাগে সবচেয়ে বেশি, কিন্তু ভর্তি শূন্য। ৫টি কলেজ-পলিটেকনিকে ডেমো ও ছোট লিড টেস্ট দিয়ে শুরু করুন।',Narail:'ভর্তি শূন্য; ২১৭টি প্রতিষ্ঠান। অনলাইন ওয়েবিনার দিয়ে চাহিদা যাচাই করুন, স্থায়ী খরচ নয়।',Meherpur:'ভর্তি শূন্য; ১৮৮টি প্রতিষ্ঠান। মুজিবনগর ও গাংনীর কলেজে সেমিনার দিয়ে শুরু করুন।'};
+const _sd=selectDistrict;
+selectDistrict=function(d){_sd(d);$('dAction').textContent=ACT[d.en]||d.action;$('selectedDistrictNote').textContent=d.en+' · গ্রেড '+gr(d);$('dProgress').style.width=Math.min(100,d.total/d.target*100)+'%';$('dProgressLabel').textContent=bn(d.total)+'/'+bn(d.target);document.querySelectorAll('.tile').forEach(t=>t.classList.toggle('sel',t.dataset.en===d.en))};
+let tt;window.levelUp=d=>{const t=$('toast');t.innerHTML='<div class="px lvup">LEVEL UP!</div><b>'+d.name+'</b> · গ্রেড '+gr(d)+'<div class="xpbar" style="margin-top:8px"><i style="width:'+Math.min(100,d.total/d.target*100)+'%"></i></div><small>'+bn(d.total)+'/'+bn(d.target)+' ভর্তি (৬০ দিনের লক্ষ্য)</small>';t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2800)};
+$('districtSelect').addEventListener('change',e=>{const d=D.find(x=>x.en===e.target.value);if(d)levelUp(d)});
+const POS={Meherpur:[1,1],Chuadanga:[2,1],Kushtia:[3,1],Jhenaidah:[2,2],Magura:[3,2],Jashore:[2,3],Narail:[3,3],Satkhira:[1,4],Khulna:[2,4],Bagerhat:[3,4]};
+D.forEach(d=>{const b=document.createElement('button');b.type='button';b.className='tile g'+gr(d);b.dataset.en=d.en;b.style.gridColumn=POS[d.en][0];b.style.gridRow=POS[d.en][1];b.innerHTML='<b>'+d.name+'</b><span class="px">'+d.total+'</span><small>লক্ষ্য '+bn(d.target)+' · গ্রেড '+gr(d)+'</small>';b.onclick=()=>{selectDistrict(d);levelUp(d)};$('board').appendChild(b)});
+const s=[...D].sort((a,b)=>b.total-a.total),top4=s.slice(0,4).reduce((a,d)=>a+d.total,0),tr=[...D].sort((a,b)=>b.rev-a.rev)[0],zero=D.filter(d=>!d.total).length,run=oct/28;
+const stats=[['শীর্ষ ৪ জেলার অংশ',Math.round(top4/tot*100)+'%','মোট ভর্তির'],['অক্টোবরের গতি',run.toFixed(1)+'/দিন','৬০ দিনে ≈ '+bn(Math.round(run*60))+' (লক্ষ্য ১৫০)'],['গড় আয়/ভর্তি',fm(rev/tot),'পরিকল্পনা ধরা ৳২,৪০০'],['ভর্তিহীন জেলা',zero+'/'+D.length,'যশোর, নড়াইল, মেহেরপুর'],['আয়ের কেন্দ্রীভবন',Math.round(tr.rev/rev*100)+'%',tr.name+' থেকে']];
+const ach=[['১০০ ভর্তি',tot,100],['অক্টোবর রেকর্ড মাস',oct,29,'সেপ্টেম্বরের চেয়ে বেশি'],['৳৩ লাখ আয়',rev,300000],['৫টি A গ্রেড জেলা',D.filter(d=>gr(d)==='A').length,5],['সব জেলায় ভর্তি',D.filter(d=>d.total>0).length,D.length],['১৫০ ভর্তি লক্ষ্য',tot,150]];
+$('insights').innerHTML='<div class="panel p-6"><h3 class="text-xl font-bold">ডেটা থেকে পাওয়া সংকেত</h3><div class="grid grid-cols-2 lg:grid-cols-5 gap-3 mt-4">'+stats.map(x=>'<div class="stat"><small>'+x[0]+'</small><span class="px">'+x[1]+'</span><small>'+x[2]+'</small></div>').join('')+'</div><h3 class="text-xl font-bold mt-6">অর্জন</h3><div class="grid md:grid-cols-2 xl:grid-cols-3 gap-3 mt-4">'+ach.map(x=>{const on=x[1]>=x[2];return '<div class="ach'+(on?'':' off')+'"><div class="medal">'+(on?'✓':'•')+'</div><div class="flex-1"><b>'+x[0]+'</b><div class="text-xs text-slate-500">'+(on?'অর্জিত':(x[1].toLocaleString('en-US')+' / '+x[2].toLocaleString('en-US')))+'</div></div></div>'}).join('')+'</div></div>';
+const calc=()=>{const c=+$('cConv').value||1,p=+$('cCpl').value||0,f=+$('cFee').value||0,L=Math.ceil(150/(c/100)),sp=L*p,rv=150*f;$('cOut').innerHTML=[['প্রয়োজনীয় লিড',bn(L)],['বিজ্ঞাপন ব্যয়',fm(sp)],['প্রতি ভর্তি খরচ',fm(sp/150)],['আয়ের লক্ষ্য',fm(rv)+' (ব্যয় '+(rv?Math.round(sp/rv*100):0)+'%)']].map(x=>'<div class="stat"><small>'+x[0]+'</small><span class="px" style="font-size:12px">'+x[1]+'</span></div>').join('')};
+['cConv','cCpl','cFee'].forEach(i=>$(i).addEventListener('input',calc));calc();
+selectDistrict(D.find(d=>d.en==='Chuadanga'));
+})();
+</script>
+</body>
+</html>
